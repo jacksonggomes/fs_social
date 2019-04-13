@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <title>Página inicial</title>
   <link rel="stylesheet" href="css/estilo.css"/>
@@ -21,13 +21,14 @@
     <a href="#">Link</a>
     <a href="#">Link</a>
     <a href="#">Link</a>
+    <a href="Sair.php">Sair</a>
   </div>
 
   <div class="row">
     <div class="column side">
       <ul>
         <h2>Menu</h2>
-        <li><a href="index.php">Home</a></li>
+        <li><a href="home.php">Home</a></li>
         <li><a href="pesquisar-paciente.php">Pacientes</a></li>
         <li><a href="pesquisar-internacao.php">Internações</a></li>
         <li><a href="default.asp" target="_blank">Relatórios</a></li>

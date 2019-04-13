@@ -1,4 +1,10 @@
 <?php
+session_start();
+  if(!isset($_SESSION['usu_id']))
+  {
+    header("location: index.php");
+    exit;
+  }
 // Header
 include_once 'includes/header.php';
 ?>

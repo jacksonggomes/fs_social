@@ -53,3 +53,18 @@ function pesquisarCidadePaciente($pac_cidade_id){
 	return $resultado_cidade;
 }
 
+function pesquisarInternacao($cadsus){
+	$pdo = db_connect();
+	$resultado_internacao =  $pdo->prepare("SELECT * FROM internacao WHERE interna_pac_id = (SELECT pac_id FROM paciente WHERE pac_cadsus = '$cadsus')");	
+	$resultado_internacao->execute();
+	$pdo = null;
+	return $resultado_internacao;
+}
+
+function pesquisarInternacaoId($interna_id){
+	$pdo = db_connect(); 
+	$resultado_internacao = $pdo->prepare("SELECT * FROM internacao WHERE interna_id = '$interna_id'");
+	$resultado_internacao->execute();
+	$pdo = null;
+	return $resultado_internacao;
+}

@@ -1,4 +1,10 @@
 <?php
+session_start();
+  if(!isset($_SESSION['usu_id']))
+  {
+    header("location: index.php");
+    exit;
+  }
 include_once 'includes/functions.php';
 // Header
 include_once 'includes/header.php';
@@ -7,11 +13,11 @@ include_once 'includes/scripts.php';
 
 <div class="column middle">
   <div class="container">
-    <form id="formulario" action="php_action/create1.php" method="POST">
+    <form id="formulario" action="php_action/create-paciente.php" method="POST">
       <fieldset id="paciente">
         <legend>1. Dados do Paciente</legend>
         <div class="row">
-          <div class="col-25"><label for="fia">FIA</label></div>
+          <div class="col-25"><label for="fia">PRONTUÁRIO</label></div>
           <div class="col-75"><input type="text" id="fia" name="nfia" placeholder="Informe o prontuário.."></div>
         </div>
         <div class="row">
@@ -21,12 +27,12 @@ include_once 'includes/scripts.php';
 
         <div class="row">
           <div class="col-25"><label for="cpf">CPF</label></div>
-          <div class="col-75"><input type="text" id="cpf" name="ncpf" placeholder="Informe o cpf.."></div>
+          <div class="col-75"><input id="cpf" name="ncpf" required="required" pattern="[0-9]{11}" maxlength="11" placeholder="CPF" onblur="TestaCPF(this.value)"></div>
         </div>
 
         <div class="row">
           <div class="col-25"><label for="nome">Nome</label></div>
-          <div class="col-75"><input type="text" id="nome" name="nnome" placeholder="Informe o nome.."></div>
+          <div class="col-75"><input type="text" id="nome" name="nnome" required="required" placeholder="Informe o nome.."></div>
         </div>
 
         <div class="row">
@@ -38,7 +44,7 @@ include_once 'includes/scripts.php';
           <div class="col-25"><label for="bairro">Bairro</label></div>
           <div class="col-75">
             <select id="bairro" name="nbairro">
-              <option selected>--Selecione um bairro--</option>
+              <option value="" selected>--Selecione um bairro--</option>
               <?php $resultado_bairro = listarBairro();
               if(count($resultado_bairro)):
                 foreach ($resultado_bairro as $bairro):?>
@@ -54,7 +60,7 @@ include_once 'includes/scripts.php';
           <div class="col-25"><label for="cidade">Cidade</label></div>
           <div class="col-75">
             <select id="cidade" name="ncidade">
-              <option selected>--Selecione uma cidade--</option>
+              <option value="" selected>--Selecione uma cidade--</option>
               <?php $resultado_cidade = listarCidade();
               if(count($resultado_cidade)):
                 foreach ($resultado_cidade as $cidade):?>
@@ -70,7 +76,7 @@ include_once 'includes/scripts.php';
           <div class="col-25"><label for="estado">Estado</label></div>
           <div class="col-75">
             <select id="estado" name="nestado">
-              <option selected>--Selecione um Estado--</option>
+              <option value="" selected>--Selecione um Estado--</option>
               <optgroup label="Região Norte">
                 <option value="Amazonas">1 - Amazonas</option>
                 <option value="Roraima">2 - Roraima (RR)</option>
@@ -113,7 +119,7 @@ include_once 'includes/scripts.php';
 
         <div class="row">
           <div class="col-25"><label for="telefone">Telefone</label></div>
-          <div class="col-75"><input type="text" data-mask="(00) 00000-0000" class="form-control" placeholder="Telefone" id="telefone" name="ntelefone"></div>
+          <div class="col-75"><input type="text" data-mask="(00) 00000-0000" class="form-control" placeholder="Telefone" id="celular" name="ntelefone"></div>
         </div>
 
         <div class="row">
@@ -157,7 +163,7 @@ include_once 'includes/scripts.php';
         <div class="col-25"><label for="vresponsavel">Vínculo</label></div>
         <div class="col-75">
           <select id="vresponsavel" name="nvinculoresponsavel">
-            <option selected>--Selecione uma vínculo do responsável--</option>
+            <option value="" selected>--Selecione uma vínculo do responsável--</option>
             <option value="Pai">1) Pai</option>
             <option value="Mãe">2) Mãe</option>
             <option value="Irmão/Irmã">3) Irmão / Irmã</option>
@@ -200,7 +206,7 @@ include_once 'includes/scripts.php';
         <div class="col-25"><label for="agregacao">Agregação familiar</label></div>
         <div class="col-75">
           <select id="agregacao" name="nagregacao">
-            <option selected>--Selecione--</option>
+            <option value="" selected>--Selecione--</option>
             <option value="1) Reside Sozinho">1) Reside Sozinho</option>
             <option value="2) Reside com pais e/ou irmãos">2) Reside com pais e/ou irmãos</option>
             <option value="3) Rezide com amigos">3) Rezide com amigos</option>
@@ -208,7 +214,6 @@ include_once 'includes/scripts.php';
             <option value="5) Sem residência fixa">5) Sem residência fixa</option>
             <option value="6) Sem residência">6) Sem residência</option>
             <option value="7) Instituição">7) Instituição</option>
-            <option value="8) Outros">8) Outros</option>
           </select>
         </div>
       </div>
@@ -217,7 +222,7 @@ include_once 'includes/scripts.php';
         <div class="col-25"><label for="escolaridade">Escolaridade</label></div>
         <div class="col-75">
           <select id="escolaridade" name="nescolaridade">
-            <option selected>--Selecione--</option>
+            <option value="" selected>--Selecione--</option>
             <option value="1) Não alfabetizado">1) Não alfabetizado</option>
             <option value="2) Alfabetizado">2) Alfabetizado</option>
             <option value="3) FIE">3) FIE</option>
@@ -238,7 +243,7 @@ include_once 'includes/scripts.php';
         <div class="col-25"><label for="pessoas">Nº de pessoas na residência</label></div>
         <div class="col-75">
           <select id="pessoas" name="npessoas">
-            <option selected>--Selecione uma quantidade--</option>
+            <option value="" selected>--Selecione uma quantidade--</option>
             <option value="1) 01 a 03 pessoas">1) 01 a 03 pessoas</option>
             <option value="2) 04 a 06 pessoas">2) 04 a 06 pessoas</option>
             <option value="3) 07 a 09 pessoas">3) 07 a 09 pessoas</option>
@@ -256,13 +261,12 @@ include_once 'includes/scripts.php';
         <div class="col-25"><label for="casa">Casa</label></div>
         <div class="col-75">
           <select id="casa" name="ncasa">
-            <option selected>--Selecione uma opção--</option>
+            <option value="" selected>--Selecione uma opção--</option>
             <option value="1) Própria">1) Própria</option>
             <option value="2) Cedida">2) Cedida</option>
             <option value="3) Alugada">3) Alugada</option>
             <option value="4) Invasão">4) Invasão</option>
             <option value="5) Instituição">5) Instituição</option>
-            <option value="6) Outros">6) Outros</option>
           </select>
         </div>
       </div>
@@ -270,26 +274,30 @@ include_once 'includes/scripts.php';
         <div class="col-25"><label for="construcaocasa">Construção da casa</label></div>
         <div class="col-75">
           <select id="contrucaocasa" name="nconstrucaocasa">
-            <option selected>--Selecione uma opção--</option>
+            <option value="" selected>--Selecione uma opção--</option>
             <option value="1) Alvenaria">1) Alvenaria</option>
             <option value="2) Madeira">2) Madeira</option>
             <option value="3) Taipa">3) Taipa</option>
             <option value="4) Palha">4) Palha</option>
             <option value="5) Palafita">5) Palafita</option>
-            <option value="6) Outros">6) Outros</option>
+            <option value="6) Flutuante">6) Flutuante</option>
           </select>
         </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25"><label for="comodos">Nº de comodos</label></div>
+        <div class="col-75"><input type="number" name="ncomodos" id="comodos" min="0" max="20"></div>
       </div>
 
       <div class="row">
         <div class="col-25"><label for="esgoto">Esgoto</label></div>
         <div class="col-75">
           <select id="esgoto" name="nesgoto">
-            <option selected>--Selecione uma opção--</option>
+            <option value="" selected>--Selecione uma opção--</option>
             <option value="1) Tubulação">1) Tubulação</option>
             <option value="2) Fossa biológica">2) Fossa biológica</option>
-            <option value="3) Não possui">3) Não possui</option>
-            <option value="4) Outros">4) Outros</option>
+            <option value="3) Não possui">3) Céu aberto</option>
           </select>
         </div>
       </div>
@@ -298,11 +306,12 @@ include_once 'includes/scripts.php';
         <div class="col-25"><label for="agua">Água</label></div>
         <div class="col-75">
           <select id="agua" name="nagua">
-            <option selected>--Selecione uma opção--</option>
+            <option value="" selected>--Selecione uma opção--</option>
             <option value="1) Rede básica">1) Rede básica</option>
             <option value="2) Poço artesiano">2) Poço artesiano</option>
-            <option value="3) Cacimba">3) Cacimba</option>
-            <option value="4) Outros">4) Outros</option>
+            <option value="3) Da chuva">3) Da chuva</option>
+            <option value="4) Do rio">4) Do rio</option>
+            <option value="5) Carro Pipa">5) Carro pipa</option>
           </select>
         </div>
       </div>
@@ -310,10 +319,11 @@ include_once 'includes/scripts.php';
         <div class="col-25"><label for="luz">Luz</label></div>
         <div class="col-75">
           <select id="luz" name="nluz">
-            <option selected>--Selecione uma opção--</option>
+            <option value="" selected>--Selecione uma opção--</option>
             <option value="1) Elétrica regularizada">1) Elétrica regularizada</option>
-            <option value="2) Elétrica não-regularizada">2) Elétrica não-regularizada</option>
-            <option value="4) Outros">3) Outros</option>
+            <option value="2) Gerador de energia">2) Gerador de energia</option>
+            <option value="3) Solar">3) Solar</option>
+            <option value="4) Outros">4) Outros</option>
           </select>
         </div>
       </div>
@@ -325,7 +335,7 @@ include_once 'includes/scripts.php';
         <div class="col-25"><label for="ocupacao">Ocupação atual</label></div>
         <div class="col-75">
           <select id="ocupacao" name="nocupacao">
-            <option selected>--Selecione uma opção--</option>
+            <option value="" selected>--Selecione uma opção--</option>
             <option value="1) Do lar">1) Do lar</option>
             <option value="2) Estudante">2) Estudante</option>
             <option value="4) Desempregado">3) Desempregado</option>
@@ -343,10 +353,11 @@ include_once 'includes/scripts.php';
         <div class="col-25"><label for="relacaotrabalhista">Relação trabalhista</label></div>
         <div class="col-75">
           <select id="relacaotrabalhista" name="nrelacaotrabalhista">
-            <option selected>--Selecione uma opção--</option>
+            <option value="" selected>--Selecione uma opção--</option>
             <option value="1) CLT">1) CLT</option>
             <option value="2) Estatutário">2) Estatutário</option>
-            <option value="3) Autônomo">3) Autônomo</option>
+            <option value="3) Autônomo">3) Avulso</option>
+            <option value="4) Outros">4) Outros</option>
           </select>
         </div>
       </div>
@@ -355,7 +366,7 @@ include_once 'includes/scripts.php';
         <div class="col-25"><label for="vinculoprevidenciario">Vínculo previdenciário</label></div>
         <div class="col-75">
           <select id="vinculoprevidenciario" name="nvinculoprevidenciario">
-            <option selected>--Selecione uma opção--</option>
+            <option value="" selected>--Selecione uma opção--</option>
             <option value="1) Empregado">1) Empregado</option>
             <option value="2) Empregador">2) Empregador</option>
             <option value="3) Autônomo">3) Autônomo</option>
@@ -373,11 +384,12 @@ include_once 'includes/scripts.php';
         <div class="col-25"><label for="orgaovinculacao">Orgão de vinculação</label></div>
         <div class="col-75">
           <select id="orgaovinculacao" name="norgaovinculacao">
-            <option selected>--Selecione uma opção--</option>
+            <option value="" selected>--Selecione uma opção--</option>
             <option value="1) INSS">1) INSS</option>
             <option value="2) Amazon PREV">2) Amazon PREV</option>
             <option value="3) Manaus Prev">3) Manaus Prev</option>
-            <option value="4) Outros">4) Outros</option>
+            <option value="4) RJU">4) RJU</option>
+            <option value="5) Outros">5) Outros</option>
           </select>
         </div>
       </div>
@@ -434,7 +446,6 @@ include_once 'includes/scripts.php';
     return status;
   };
 </script>
-
 <?php
 // Footer
 include_once 'includes/footer.php';

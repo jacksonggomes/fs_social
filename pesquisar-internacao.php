@@ -1,11 +1,17 @@
 <?php
+session_start();
+  if(!isset($_SESSION['usu_id']))
+  {
+    header("location: index.php");
+    exit;
+  }
 // Header
 include_once 'includes/header.php';
 ?>
 
 <div class="column middle">
   <div class="container">
-    <form action="/action_page.php">
+    <form action="pesquisar-internacao-result.php" method="GET">
       <fieldset id="paciente">
         <legend>Pesquisar Inrternações</legend>
         <div class="row">
@@ -18,24 +24,13 @@ include_once 'includes/header.php';
         </div>
       </fieldset>
       <div class="row">
-        <input type="submit" value="Pesquisar">
+        <input type="submit" name="btn-pesquisar-interna" value="Pesquisar">
       </div>  
     </form>
     <br>
-    <form action="crud-internacao.php">
-      <div class="row">
-        <input id="adicionar" type="submit" value="Adicionar">
-      </div>
-    </form>
   </div>
 </div>    
 </div>
-
-<!--script-->
-<script>
-  $("#telefone").mask("(00) 0000-0000");
-  $("#celular").mask("(00) 00000-0000");
-</script>
 
 <?php
 // Footer

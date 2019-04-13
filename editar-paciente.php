@@ -1,4 +1,10 @@
 <?php
+session_start();
+  if(!isset($_SESSION['usu_id']))
+  {
+    header("location: index.php");
+    exit;
+  }
 // Header
 include_once 'includes/header.php';
 include_once 'includes/scripts.php';
@@ -13,7 +19,7 @@ endif;
 
 <div class="column middle">
   <div class="container">
-    <form id="formulario" action="php_action/update1.php" method="POST">
+    <form id="formulario" action="php_action/update-paciente.php" method="POST">
       <fieldset id="paciente">
         <?php foreach ($resultado as $dados): ?>
           <legend>1. Dados do Paciente</legend>
@@ -21,7 +27,7 @@ endif;
             <div class="col-75"><input type="hidden" id="id" name="nid" value="<?php echo $dados['pac_id'];?>"></div>
           </div>
           <div class="row">
-            <div class="col-25"><label for="fia">FIA</label></div>
+            <div class="col-25"><label for="fia">PRONTUÁRIO</label></div>
             <div class="col-75"><input type="text" id="fia" name="nfia" value="<?php echo $dados['pac_fia'];?>"></div>
           </div>
           <div class="row">
@@ -31,7 +37,7 @@ endif;
 
           <div class="row">
             <div class="col-25"><label for="cpf">CPF</label></div>
-            <div class="col-75"><input type="text" id="cpf" name="ncpf" value="<?php echo $dados['pac_cpf'];?>"></div>
+            <div class="col-75"><input type="text" id="cpf" name="ncpf" value="<?php echo $dados['pac_cpf'];?>" readonly></div>
           </div>
 
           <div class="row">
@@ -228,7 +234,6 @@ endif;
           <option value="5) Sem residência fixa">5) Sem residência fixa</option>
           <option value="6) Sem residência">6) Sem residência</option>
           <option value="7) Instituição">7) Instituição</option>
-          <option value="8) Outros">8) Outros</option>
         </select>
       </div>
     </div>
@@ -282,7 +287,6 @@ endif;
           <option value="3) Alugada">3) Alugada</option>
           <option value="4) Invasão">4) Invasão</option>
           <option value="5) Instituição">5) Instituição</option>
-          <option value="6) Outros">6) Outros</option>
         </select>
       </div>
     </div>
@@ -296,20 +300,25 @@ endif;
           <option value="3) Taipa">3) Taipa</option>
           <option value="4) Palha">4) Palha</option>
           <option value="5) Palafita">5) Palafita</option>
-          <option value="6) Outros">6) Outros</option>
+          <option value="6) Flutuante">6) Flutuante</option>
         </select>
       </div>
     </div>
+
+    <div class="row">
+        <div class="col-25"><label for="comodos">Nº de comodos</label></div>
+        <div class="col-75"><input type="number" name="ncomodos" id="comodos" min="0" max="20" value="<?php echo $dados['pac_comodos'];?>"></div>
+      </div>
 
     <div class="row">
       <div class="col-25"><label for="esgoto">Esgoto</label></div>
       <div class="col-75">
         <select id="esgoto" name="nesgoto">
           <option selected><?php echo $dados['pac_esgoto'];?></option>
+          <option selected>--Selecione uma opção--</option>
           <option value="1) Tubulação">1) Tubulação</option>
           <option value="2) Fossa biológica">2) Fossa biológica</option>
-          <option value="3) Não possui">3) Não possui</option>
-          <option value="4) Outros">4) Outros</option>
+          <option value="3) Não possui">3) Céu aberto</option>
         </select>
       </div>
     </div>
@@ -321,8 +330,9 @@ endif;
           <option selected><?php echo $dados['pac_agua'];?></option>
           <option value="1) Rede básica">1) Rede básica</option>
           <option value="2) Poço artesiano">2) Poço artesiano</option>
-          <option value="3) Cacimba">3) Cacimba</option>
-          <option value="4) Outros">4) Outros</option>
+          <option value="3) Da chuva">3) Da chuva</option>
+          <option value="4) Do rio">4) Do rio</option>
+          <option value="5) Carro Pipa">5) Carro pipa</option>
         </select>
       </div>
     </div>
@@ -332,8 +342,9 @@ endif;
         <select id="luz" name="nluz">
           <option selected><?php echo $dados['pac_luz'];?></option>
           <option value="1) Elétrica regularizada">1) Elétrica regularizada</option>
-          <option value="2) Elétrica não-regularizada">2) Elétrica não-regularizada</option>
-          <option value="4) Outros">3) Outros</option>
+          <option value="2) Gerador de energia">2) Gerador de energia</option>
+          <option value="3) Solar">3) Solar</option>
+          <option value="4) Outros">4) Outros</option>
         </select>
       </div>
     </div>
@@ -366,7 +377,8 @@ endif;
           <option selected><?php echo $dados['pac_relacao_trabalhista'];?></option>
           <option value="1) CLT">1) CLT</option>
           <option value="2) Estatutário">2) Estatutário</option>
-          <option value="3) Autônomo">3) Autônomo</option>
+          <option value="3) Autônomo">3) Avulso</option>
+          <option value="4) Outros">4) Outros</option>
         </select>
       </div>
     </div>
@@ -397,12 +409,13 @@ endif;
           <option value="1) INSS">1) INSS</option>
           <option value="2) Amazon PREV">2) Amazon PREV</option>
           <option value="3) Manaus Prev">3) Manaus Prev</option>
-          <option value="4) Outros">4) Outros</option>
+          <option value="4) RJU">4) RJU</option>
+          <option value="5) Outros">5) Outros</option>
         </select>
       </div>
     </div>
   </fieldset>
-  <<?php endforeach; ?>
+  <?php endforeach; ?>
   <div class="row">
     <input type="submit" name="btn-editar-paciente" value="Salvar">
   </div>        

@@ -10,36 +10,35 @@ include_once 'includes/functions.php';
 // Header
 include_once 'includes/header.php';
 // Select
-if(isset($_GET['btn-pesquisar-pac'])):
-  $resultado_paciente = pesquisarPaciente($_GET['ncadsus']);
+if(isset($_GET['btn-pesquisar-interna'])):
+  $resultado_internacao = pesquisarInternacao($_GET['ncadsus']);
   ?>
   <div class="column middle">
     <div class="container">
       <div class="row">
         <div>
-          <h3> Pacientes </h3>
+          <h3> Internações </h3>
           <table>
             <thead>
               <tr>
-                <th>CADSUS:</th>
-                <th>Nome:</th>
-                <th>Telefone:</th>
-                <th>Idade:</th>
+                <th>Data de Internação:</th>
+                <th>Admissão:</th>
+                <th>Clínica:</th>
+                <th>Status:</th>
               </tr>
             </thead>
 
             <tbody>
               <?php
-              if(count ($resultado_paciente)):
-                foreach ($resultado_paciente as $dados):
+              if(count ($resultado_internacao)):
+                foreach ($resultado_internacao as $dados):
                   ?>
                   <tr>
-                    <td><?php echo $dados['pac_cadsus']; ?></td>
-                    <td><?php echo $dados['pac_nome']; ?></td>
-                    <td><?php echo $dados['pac_telefone']; ?></td>
-                    <td><?php echo $dados['pac_idade']; ?></td>
-                    <td><a href="editar-paciente.php?pac_id=<?php echo $dados['pac_id']; ?>" title="Editar paciente"><img src="images/edit.png" height="40" width="40"></a></td>
-                    <td><a href="crud-internacao.php?pac_id=<?php echo $dados['pac_id']; ?>" title="Internar paciente"><img src="images/internar1.png" height="50" width="50"></a></td>
+                    <td><?php echo $dados['interna_data']; ?></td>
+                    <td><?php echo $dados['interna_admissao']; ?></td>
+                    <td><?php echo $dados['interna_clinica']; ?></td>
+                    <td><?php echo $dados['interna_status']; ?></td>
+                    <td><a href="editar-internacao.php?interna_id=<?php echo $dados['interna_id']; ?>" title="Editar Internação"><img src="images/edit.png" height="40" width="40"></a></td>
                   </tr>
                   <?php 
                 endforeach;
@@ -58,7 +57,7 @@ if(isset($_GET['btn-pesquisar-pac'])):
               </tbody>
             </table>
             <br>
-            <form action="pesquisar-paciente.php">
+            <form action="pesquisar-internacao.php">
               <div class="row">
                 <input type="submit" value="Voltar">
               </div>
