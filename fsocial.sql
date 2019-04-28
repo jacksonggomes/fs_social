@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 10-Mar-2019 às 02:54
+-- Generation Time: 28-Abr-2019 às 17:19
 -- Versão do servidor: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -757,12 +757,23 @@ DROP TABLE IF EXISTS `internacao`;
 CREATE TABLE IF NOT EXISTS `internacao` (
   `interna_id` int(11) NOT NULL AUTO_INCREMENT,
   `interna_data` date NOT NULL,
-  `interna_pac_cadsus` varchar(15) NOT NULL,
   `interna_admissao` varchar(100) NOT NULL,
   `interna_clinica` varchar(100) NOT NULL,
+  `interna_leito` varchar(10) NOT NULL,
   `interna_diagnostico` varchar(200) NOT NULL,
-  PRIMARY KEY (`interna_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `interna_status` varchar(20) NOT NULL,
+  `interna_pac_id` int(11) NOT NULL,
+  PRIMARY KEY (`interna_id`),
+  KEY `internacao_ibfk_1` (`interna_pac_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `internacao`
+--
+
+INSERT INTO `internacao` (`interna_id`, `interna_data`, `interna_admissao`, `interna_clinica`, `interna_leito`, `interna_diagnostico`, `interna_status`, `interna_pac_id`) VALUES
+(2, '2019-04-12', 'Hospital HUGV', 'Médica', '100', 'Ser lindo d+', 'Internado', 20),
+(3, '2019-04-23', 'HUGV', 'Cirúrgica', '22', 'Qualquer', 'Internado', 20);
 
 -- --------------------------------------------------------
 
@@ -773,13 +784,17 @@ CREATE TABLE IF NOT EXISTS `internacao` (
 DROP TABLE IF EXISTS `paciente`;
 CREATE TABLE IF NOT EXISTS `paciente` (
   `pac_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pac_entrevista` date NOT NULL,
   `pac_fia` varchar(15) NOT NULL,
   `pac_cadsus` varchar(15) NOT NULL,
-  `pac_cpf` int(11) DEFAULT NULL,
+  `pac_documento` varchar(20) DEFAULT NULL,
+  `pac_cpf` varchar(11) DEFAULT NULL,
   `pac_nome` varchar(200) NOT NULL,
   `pac_endereco` varchar(200) NOT NULL,
   `pac_estado` varchar(50) NOT NULL,
   `pac_telefone` varchar(16) DEFAULT NULL,
+  `pac_recado` varchar(50) DEFAULT NULL,
+  `pac_celular` varchar(17) DEFAULT NULL,
   `pac_nome_pai` varchar(200) DEFAULT NULL,
   `pac_prof_pai` varchar(100) DEFAULT NULL,
   `pac_nome_mae` varchar(200) DEFAULT NULL,
@@ -789,7 +804,6 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   `pac_responsavel` varchar(200) DEFAULT NULL,
   `pac_responsavel_vinc` varchar(100) DEFAULT NULL,
   `pac_naturalidade` varchar(100) NOT NULL,
-  `pac_procedencia` varchar(100) NOT NULL,
   `pac_nascimento` date NOT NULL,
   `pac_idade` int(11) DEFAULT NULL,
   `pac_sexo` varchar(10) NOT NULL,
@@ -797,12 +811,15 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   `pac_escolaridade` varchar(100) DEFAULT NULL,
   `pac_pessoas_res` varchar(100) DEFAULT NULL,
   `pac_pessoas_rend` int(11) DEFAULT NULL,
+  `pac_renda` varchar(50) DEFAULT NULL,
   `pac_tipo_casa` varchar(100) NOT NULL,
   `pac_const_casa` varchar(100) NOT NULL,
+  `pac_comodos` int(20) NOT NULL,
   `pac_esgoto` varchar(100) NOT NULL,
   `pac_agua` varchar(100) NOT NULL,
   `pac_luz` varchar(100) NOT NULL,
   `pac_ocupa` varchar(100) DEFAULT NULL,
+  `pac_profissao` varchar(100) DEFAULT NULL,
   `pac_local_trabalho` varchar(200) DEFAULT NULL,
   `pac_relacao_trabalhista` varchar(100) DEFAULT NULL,
   `pac_vinculo_prev` varchar(100) DEFAULT NULL,
@@ -812,14 +829,18 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   PRIMARY KEY (`pac_id`),
   KEY `paciente_ibfk_2` (`pac_bairro_id`),
   KEY `paciente_ibfk_1` (`pac_cidade_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `paciente`
 --
 
-INSERT INTO `paciente` (`pac_id`, `pac_fia`, `pac_cadsus`, `pac_cpf`, `pac_nome`, `pac_endereco`, `pac_estado`, `pac_telefone`, `pac_nome_pai`, `pac_prof_pai`, `pac_nome_mae`, `pac_prof_mae`, `pac_conjugue`, `pac_prof_conjugue`, `pac_responsavel`, `pac_responsavel_vinc`, `pac_naturalidade`, `pac_procedencia`, `pac_nascimento`, `pac_idade`, `pac_sexo`, `pac_agregacao`, `pac_escolaridade`, `pac_pessoas_res`, `pac_pessoas_rend`, `pac_tipo_casa`, `pac_const_casa`, `pac_esgoto`, `pac_agua`, `pac_luz`, `pac_ocupa`, `pac_local_trabalho`, `pac_relacao_trabalhista`, `pac_vinculo_prev`, `pac_orgao_vinc`, `pac_bairro_id`, `pac_cidade_id`) VALUES
-(3, '2222', '3333', 7777, 'JACKSON GONCALVES GOMES', 'rua 1', 'Amazonas', '(92) 33054-780', 'celson gomes', 'pedreiro', 'ana lucia', 'dona de casa', 'alessandra souza', 'contadora', '', '', 'nhamundá/am', 'manaus', '1983-04-12', 35, 'Masculino', '4) Rezide com esposo(a) e/ou filhos', '8) Superior incompleto', '2) 04 a 06 pessoas', 2, '2222', '1) Alvenaria', '1) Tubulação', '1) Rede básica', '1) Elétrica regularizada', '2) Estudante', 'hugv', '1) CLT', '1) Empregado', '1) INSS', 224, 112);
+INSERT INTO `paciente` (`pac_id`, `pac_entrevista`, `pac_fia`, `pac_cadsus`, `pac_documento`, `pac_cpf`, `pac_nome`, `pac_endereco`, `pac_estado`, `pac_telefone`, `pac_recado`, `pac_celular`, `pac_nome_pai`, `pac_prof_pai`, `pac_nome_mae`, `pac_prof_mae`, `pac_conjugue`, `pac_prof_conjugue`, `pac_responsavel`, `pac_responsavel_vinc`, `pac_naturalidade`, `pac_nascimento`, `pac_idade`, `pac_sexo`, `pac_agregacao`, `pac_escolaridade`, `pac_pessoas_res`, `pac_pessoas_rend`, `pac_renda`, `pac_tipo_casa`, `pac_const_casa`, `pac_comodos`, `pac_esgoto`, `pac_agua`, `pac_luz`, `pac_ocupa`, `pac_profissao`, `pac_local_trabalho`, `pac_relacao_trabalhista`, `pac_vinculo_prev`, `pac_orgao_vinc`, `pac_bairro_id`, `pac_cidade_id`) VALUES
+(20, '2019-04-22', '3333', '333', '1613719-1', '73722189268', 'Jackson Gonçalves Gomes', 'Rua Sinval de Moura, 449', 'Amazonas', '(92) 3305-4780', 'Estagiário', '', 'Celson Costa Gomes', 'Carpinteiro', 'Ana Lúcia Gonçalves Gomes', 'Dona de casa', 'Alessandra Souza Nascimento', 'Contadora', '', '', 'Nhamundá-am', '1983-04-12', 36, 'Masculino', 'Rezide com esposo(a) e/ou filhos', 'Superior incompleto', '04 a 06', 2, NULL, 'Própria', 'Alvenaria', 9, 'Tubulação', 'Rede básica', 'Elétrica regularizada', 'Outros', '', 'HUGV-UFAM', 'CLT', 'Empregado', 'INSS', 224, 112),
+(25, '2019-04-19', '555', '5555', NULL, '73722189268', 'Analizz Souza Gomes', 'Rua Sinval de Moura,449', 'Amazonas', '', '', '(92) 98238-2882', 'Jackson Gonçalves Gomes', 'Técnico em Informática', 'Alessandra Souza Nascimento', 'Contadora', '', '', 'Jackson Gonçalves Gomes', 'Pai', 'Manaus/am', '2017-04-21', 2, 'Feminino', 'Reside com pais e/ou irmãos', 'Fundamental incompleto', '04 a 06', 2, NULL, 'Própria', 'Alvenaria', 10, 'Tubulação', 'Rede básica', 'Elétrica regularizada', 'Estudante', NULL, NULL, '', '', '', 224, 112),
+(29, '2019-04-26', '666', '6666', '', '', 'Analice Souza Gomes', 'Rua Sinval de Moura,449', 'Amazonas', '', '', '(92) 98238-2882', 'Jackson Gonçalves Gomes', 'Técnico em Informática', 'Alessandra Souza Nascimento', 'Contadora', '', '', 'Jackson Gonçalves Gomes', 'Pai', 'Manaus/am', '2008-04-21', 11, 'Feminino', 'Reside com pais e/ou irmãos', 'Fundamental incompleto', '04 a 06', 2, NULL, 'Própria', 'Alvenaria', 10, 'Tubulação', 'Rede básica', 'Elétrica regularizada', 'Estudante', NULL, NULL, '', '', '', 224, 112),
+(28, '2019-04-18', '444', '4444', '1613719-2', '', 'Alessandra souza Nascimento', 'Rua Sinval de Moura,449', 'Amazonas', '', '', '(92) 98111-8572', '', '', '', '', 'Jackson Gonçalves Gomes', 'Técnico em Informática', '', '', 'Coaria-am', '1979-10-25', 39, 'Feminino', 'Rezide com esposo(a) e/ou filhos', 'Superior completo', '04 a 06', 2, NULL, 'Própria', 'Alvenaria', 10, 'Tubulação', 'Rede básica', 'Elétrica regularizada', 'Outros', '', '', 'CLT', 'Empregado', 'INSS', 224, 112),
+(31, '2019-04-26', '999', '9999', '123', '', 'teste', 'rua1', 'Amazonas', '', '', '(92) 98233-5555', '', '', '', '', '', '', '', '', 'coari-am', '2000-01-01', 19, 'Masculino', 'Reside com pais e/ou irmãos', 'Alfabetizado', '04 a 06', 2, 'Sem renda', 'Própria', 'Madeira', 4, 'Tubulação', 'Rede básica', 'Gerador de energia', 'Estudante', '', '', '', '', '', 204, 25);
 
 -- --------------------------------------------------------
 
@@ -832,13 +853,18 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `usu_id` int(11) NOT NULL AUTO_INCREMENT,
   `usu_nome` varchar(100) NOT NULL,
   `usu_cargo` varchar(50) NOT NULL,
-  `usu_setor` varchar(100) NOT NULL,
   `usu_perfil` varchar(30) NOT NULL,
   `usu_login` varchar(50) NOT NULL,
   `usu_senha` varchar(32) NOT NULL,
-  `usu_status` varchar(7) NOT NULL,
   PRIMARY KEY (`usu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`usu_id`, `usu_nome`, `usu_cargo`, `usu_perfil`, `usu_login`, `usu_senha`) VALUES
+(3, 'Jackson Gomes', 'TÃ©cnico em InformÃ¡tica', 'Administrador', 'jackson.gomes@ebserh.gov.br', '202cb962ac59075b964b07152d234b70');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

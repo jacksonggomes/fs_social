@@ -1,0 +1,13 @@
+SELECT
+   internacao.*,
+   paciente.*
+FROM
+   internacao
+INNER JOIN
+   paciente ON internacao.interna_pac_id = paciente.pac_id
+WHERE
+   internacao.interna_pac_id = 20
+
+
+
+SELECT internacao.*, paciente.*, bairro.desc_bairro, cidade.cid_desc FROM internacao INNER JOIN paciente ON internacao.interna_pac_id = paciente.pac_id INNER JOIN bairro ON paciente.pac_bairro_id = bairro.id_bairro INNER JOIN cidade ON paciente.pac_cidade_id = cidade.id_cidade WHERE internacao.interna_id = 2

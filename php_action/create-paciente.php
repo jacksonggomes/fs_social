@@ -5,6 +5,7 @@ require_once 'init.php';
 if(isset($_POST['btn-cadastrar-paciente'])):
 	$fia = ($_POST['nfia']);
 	$cadsus = ($_POST['ncadsus']);
+	$documento = ($_POST['ndocumento']);
 	$cpf = ($_POST['ncpf']);
 	$nome = ($_POST['nnome']);
 	$endereco = ($_POST['nendereco']);
@@ -12,6 +13,8 @@ if(isset($_POST['btn-cadastrar-paciente'])):
 	$cidade = ($_POST['ncidade']);
 	$estado = ($_POST['nestado']);
 	$telefone = ($_POST['ntelefone']);
+	$recado = ($_POST['nrecado']);
+	$celular = ($_POST['ncelular']);
 	$pai = ($_POST['npai']);
 	$ppai = ($_POST['nppai']);
 	$mae = ($_POST['nmae']);
@@ -21,7 +24,6 @@ if(isset($_POST['btn-cadastrar-paciente'])):
 	$responsavel = ($_POST['nresponsavel']);
 	$vinculo = ($_POST['nvinculoresponsavel']);
 	$naturalidade = ($_POST['nnaturalidade']);
-	$procedencia = ($_POST['nprocedencia']);
 	$datanascimento = ($_POST['ndatanascimento']);
 	$idade = ($_POST['nidade']);
 	$sexo = ($_POST['nsexo']);
@@ -29,13 +31,15 @@ if(isset($_POST['btn-cadastrar-paciente'])):
 	$escolaridade = ($_POST['nescolaridade']);
 	$pessoas = ($_POST['npessoas']);
 	$pessoasrend = ($_POST['npessoasrend']);
-	$casa = ($_POST['nfia']);
+	$renda = ($_POST['nrenda']);
+	$casa = ($_POST['ncasa']);
 	$construcaocasa = ($_POST['nconstrucaocasa']);
 	$comodos = ($_POST['ncomodos']);
 	$esgoto = ($_POST['nesgoto']);
 	$agua = ($_POST['nagua']);
 	$luz = ($_POST['nluz']);
 	$ocupacao = ($_POST['nocupacao']);
+	$profissao = ($_POST['nprofissao']);
 	$localtrabalho = ($_POST['nlocaltrabalho']);
 	$relacaotrabalhista = ($_POST['nrelacaotrabalhista']);
 	$vinculoprevidenciario = ($_POST['nvinculoprevidenciario']);
@@ -52,11 +56,16 @@ if(isset($_POST['btn-cadastrar-paciente'])):
 // insere no banco
 	$PDO = db_connect();
 //$sql = "INSERT INTO users(name, email, password) VALUES(:name, :email, :passwordHash)";
-	$sql = "INSERT INTO paciente (pac_fia, pac_cadsus, pac_cpf, pac_nome, pac_endereco, pac_bairro_id, pac_cidade_id, pac_estado, pac_telefone, pac_nome_pai, pac_prof_pai, pac_nome_mae, pac_prof_mae, pac_conjugue, pac_prof_conjugue, pac_responsavel, pac_responsavel_vinc, pac_naturalidade, pac_procedencia, pac_nascimento, pac_idade, pac_sexo, pac_agregacao, pac_escolaridade, pac_pessoas_res, pac_pessoas_rend, pac_tipo_casa, pac_const_casa, pac_comodos, pac_esgoto, pac_agua, pac_luz, pac_ocupa, pac_local_trabalho, pac_relacao_trabalhista, pac_vinculo_prev, pac_orgao_vinc) 
-	VALUES (:fia, :cadsus, :cpf, :nome, :endereco, :bairro, :cidade, :estado, :telefone, :pai, :ppai, :mae, :pmae, :conjugue, :pconjugue, :responsavel, :vinculo, :naturalidade, :procedencia, :datanascimento, :idade, :sexo, :agregacao, :escolaridade, :pessoas, :pessoasrend, :casa, :construcaocasa, :comodos, :esgoto, :agua, :luz, :ocupacao, :localtrabalho, :relacaotrabalhista, :vinculoprevidenciario, :orgaovinculacao)";
+	$sql = "INSERT INTO paciente (pac_entrevista, pac_fia, pac_cadsus,pac_documento, pac_cpf, pac_nome, pac_endereco, pac_bairro_id, pac_cidade_id, pac_estado, pac_telefone, pac_celular, pac_recado, pac_nome_pai, pac_prof_pai, pac_nome_mae, pac_prof_mae, pac_conjugue, pac_prof_conjugue, pac_responsavel, pac_responsavel_vinc, pac_naturalidade, pac_nascimento, pac_idade, pac_sexo, pac_agregacao, pac_escolaridade, pac_pessoas_res, pac_pessoas_rend, pac_renda, pac_tipo_casa, pac_const_casa, pac_comodos, pac_esgoto, pac_agua, pac_luz, pac_ocupa, pac_profissao, pac_local_trabalho, pac_relacao_trabalhista, pac_vinculo_prev, pac_orgao_vinc) 
+	VALUES (:data_atual, :fia, :cadsus, :documento, :cpf, :nome, :endereco, :bairro, :cidade, :estado, :telefone, :recado, :celular, :pai, :ppai, :mae, :pmae, :conjugue, :pconjugue, :responsavel, :vinculo, :naturalidade, :datanascimento, :idade, :sexo, :agregacao, :escolaridade, :pessoas, :pessoasrend, :renda, :casa, :construcaocasa, :comodos, :esgoto, :agua, :luz, :ocupacao, :profissao, :localtrabalho, :relacaotrabalhista, :vinculoprevidenciario, :orgaovinculacao)";
+	$now = new DateTime();
+	$data_atual = $now->format('Y-m-d H:i:s');
+
 	$stmt = $PDO->prepare($sql);
+	$stmt->bindParam(':data_atual', $data_atual);
 	$stmt->bindParam(':fia', $fia);
 	$stmt->bindParam(':cadsus', $cadsus);
+	$stmt->bindParam(':documento', $documento);
 	$stmt->bindParam(':cpf', $cpf);
 	$stmt->bindParam(':nome', $nome); 
 	$stmt->bindParam(':endereco', $endereco);
@@ -64,6 +73,8 @@ if(isset($_POST['btn-cadastrar-paciente'])):
 	$stmt->bindParam(':cidade', $cidade);
 	$stmt->bindParam(':estado', $estado);
 	$stmt->bindParam(':telefone', $telefone);
+	$stmt->bindParam(':recado', $recado);
+	$stmt->bindParam(':celular', $celular);
 	$stmt->bindParam(':pai', $pai);
 	$stmt->bindParam(':ppai', $ppai);
 	$stmt->bindParam(':mae', $mae);
@@ -73,7 +84,6 @@ if(isset($_POST['btn-cadastrar-paciente'])):
 	$stmt->bindParam(':responsavel', $responsavel);
 	$stmt->bindParam(':vinculo', $vinculo);
 	$stmt->bindParam(':naturalidade', $naturalidade);
-	$stmt->bindParam(':procedencia', $procedencia);
 	$stmt->bindParam(':datanascimento', $datanascimento);
 	$stmt->bindParam(':idade', $idade);
 	$stmt->bindParam(':sexo', $sexo);
@@ -81,6 +91,7 @@ if(isset($_POST['btn-cadastrar-paciente'])):
 	$stmt->bindParam(':escolaridade', $escolaridade);
 	$stmt->bindParam(':pessoas', $pessoas);
 	$stmt->bindParam(':pessoasrend', $pessoasrend);
+	$stmt->bindParam(':renda', $renda);
 	$stmt->bindParam(':casa', $casa);
 	$stmt->bindParam(':construcaocasa', $construcaocasa);
 	$stmt->bindParam(':comodos', $comodos);
@@ -88,6 +99,7 @@ if(isset($_POST['btn-cadastrar-paciente'])):
 	$stmt->bindParam(':agua', $agua);
 	$stmt->bindParam(':luz', $luz);
 	$stmt->bindParam(':ocupacao', $ocupacao);
+	$stmt->bindParam(':profissao', $profissao);
 	$stmt->bindParam(':localtrabalho', $localtrabalho);
 	$stmt->bindParam(':relacaotrabalhista', $relacaotrabalhista);
 	$stmt->bindParam(':vinculoprevidenciario', $vinculoprevidenciario);

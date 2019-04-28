@@ -38,22 +38,22 @@ include_once 'includes/functions.php';
 
         <div class="row">
           <div class="col-25"><label for="admissao">Admissão</label></div>
-          <div class="col-75"><input type="text" id="admissao" name="nadmissao" placeholder="Informe de que unidade o paciente"></div>
+          <div class="col-75"><input type="text" id="admissao" name="nadmissao" placeholder="Informe de que unidade o paciente" required></div>
         </div>
 
         <div class="row">
           <div class="col-25"><label for="clinica">Clínica</label></div>
-          <div class="col-75"><input type="text" id="clinica" name="nclinica" placeholder="Informe o nome.."></div>
+          <div class="col-75"><input type="text" id="clinica" name="nclinica" placeholder="Informe o nome.." required></div>
         </div>
 
         <div class="row">
           <div class="col-25"><label for="clinica">Leito</label></div>
-          <div class="col-75"><input type="number" id="leito" name="nleito" placeholder="Número do leito.."></div>
+          <div class="col-75"><input type="number" id="leito" name="nleito" placeholder="Número do leito.." required></div>
         </div>
 
         <div class="row">
           <div class="row"><div class="col-25"><label for="diagnostico">Diagnóstico</label></div>
-          <div class="col-75"><input type="text" id="diagnostico" name="ndiagnostico" placeholder="Informe o diagnóstico.."></div>
+          <div class="col-75"><input type="text" id="diagnostico" name="ndiagnostico" placeholder="Informe o diagnóstico.." required></div>
         </div>
 
          <div class="row">

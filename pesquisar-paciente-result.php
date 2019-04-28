@@ -11,7 +11,7 @@ include_once 'includes/functions.php';
 include_once 'includes/header.php';
 // Select
 if(isset($_GET['btn-pesquisar-pac'])):
-  $resultado_paciente = pesquisarPaciente($_GET['ncadsus']);
+  $resultado_paciente = pesquisarPaciente($_GET['ncadsus'], $_GET['nnome']);
   ?>
   <div class="column middle">
     <div class="container">

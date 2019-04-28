@@ -33,21 +33,21 @@ endif;
 
           <div class="row">
             <div class="col-25"><label for="fia">Admissão</label></div>
-            <div class="col-75"><input type="text" id="admissao" name="nadmissao" value="<?php echo $dados['interna_admissao'];?>"></div>
+            <div class="col-75"><input type="text" id="admissao" name="nadmissao" value="<?php echo $dados['interna_admissao'];?>" required></div>
           </div>
           <div class="row">
             <div class="col-25"><label for="cpf">Clínica</label></div>
-            <div class="col-75"><input type="text" id="clinica" name="nclinica" value="<?php echo $dados['interna_clinica'];?>"></div>
+            <div class="col-75"><input type="text" id="clinica" name="nclinica" value="<?php echo $dados['interna_clinica'];?>" required></div>
           </div>
 
           <div class="row">
             <div class="col-25"><label for="cpf">Leito</label></div>
-            <div class="col-75"><input type="text" id="leito" name="nleito" value="<?php echo $dados['interna_leito'];?>"></div>
+            <div class="col-75"><input type="text" id="leito" name="nleito" value="<?php echo $dados['interna_leito'];?>" required></div>
           </div>
 
           <div class="row">
             <div class="col-25"><label for="nome">Diagnóstico</label></div>
-            <div class="col-75"><input type="text" id="diagnostico" name="ndiagnostico" value="<?php echo $dados['interna_diagnostico'];?>"></div>
+            <div class="col-75"><input type="text" id="diagnostico" name="ndiagnostico" value="<?php echo $dados['interna_diagnostico'];?>" required></div>
           </div>
 
           <div class="row">
@@ -55,7 +55,7 @@ endif;
           </div>          
 
     <div class="row">
-      <div class="col-25"><label for="vresponsavel">Status</label></div>
+      <div class="col-25"><label for="status">Status</label></div>
       <div class="col-75">
         <select id="status" name="nstatus">
           <option selected><?php echo $dados['interna_status'];?></option>
@@ -72,6 +72,15 @@ endif;
   <div class="row">
     <input type="submit" name="btn-atualizar-internacao" value="Salvar">
   </div>        
+</form>
+<br>
+<form action="phpjasperxml/fsocial.php" method="GET">
+<div class="row">
+  <div class="col-75"><input type="hidden" id="id" name="nid" value="<?php echo $dados['interna_id'];?>"></div>
+  </div>
+<div class="row">
+  <input type="submit" id="adicionar" name="btn-imprimir" value="Imprimir">
+</div> 
 </form>
 </div>
 </div>    

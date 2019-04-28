@@ -4,24 +4,31 @@ include_once 'php_action/init.php';
 
 function listarBairro(){
 	$pdo = db_connect(); 
-	$resultado_bairro = $pdo->prepare("SELECT * FROM bairro");
+	$resultado_bairro = $pdo->prepare("SELECT * FROM bairro ORDER BY desc_bairro");
 	$resultado_bairro->execute();
 	return $resultado_bairro;	
 	$pdo = null;	
 }
 function listarCidade(){
 	$pdo = db_connect(); 
-	$resultado_cidade = $pdo->prepare("SELECT * FROM cidade");
+	$resultado_cidade = $pdo->prepare("SELECT * FROM cidade ORDER BY cid_desc");
 	$resultado_cidade->execute();
 	return $resultado_cidade;
 	$pdo = null;
 }
 
-function pesquisarPaciente($pac_cadsus){
-	$pdo = db_connect(); 
-	$resultado_paciente = $pdo->prepare("SELECT * FROM paciente WHERE pac_cadsus = '$pac_cadsus'");
-	$resultado_paciente->execute();
+function pesquisarPaciente($pac_cadsus, $pac_nome){
+	if ($pac_cadsus != ""){
+		$pdo = db_connect(); 
+		$resultado_paciente = $pdo->prepare("SELECT pac_id, pac_cadsus, pac_nome, pac_telefone, pac_idade FROM paciente WHERE pac_cadsus = '$pac_cadsus'");
+		$resultado_paciente->execute();
 	return $resultado_paciente;
+	}else{
+		$pdo = db_connect(); 
+		$resultado_paciente = $pdo->prepare("SELECT pac_id, pac_cadsus, pac_nome, pac_telefone, pac_idade FROM paciente WHERE pac_nome like '%$pac_nome%'");
+		$resultado_paciente->execute();
+	return $resultado_paciente;
+	}
 	$pdo = null;
 }
 
@@ -53,12 +60,18 @@ function pesquisarCidadePaciente($pac_cidade_id){
 	return $resultado_cidade;
 }
 
-function pesquisarInternacao($cadsus){
+function pesquisarInternacao($cadsus, $nome){
 	$pdo = db_connect();
+	if ($cadsus != ""){
 	$resultado_internacao =  $pdo->prepare("SELECT * FROM internacao WHERE interna_pac_id = (SELECT pac_id FROM paciente WHERE pac_cadsus = '$cadsus')");	
 	$resultado_internacao->execute();
-	$pdo = null;
 	return $resultado_internacao;
+}else{
+	$resultado_internacao =  $pdo->prepare("SELECT * FROM internacao WHERE interna_pac_id = (SELECT pac_id FROM paciente WHERE pac_nome like '%$nome%')");	
+	$resultado_internacao->execute();
+	return $resultado_internacao;
+}
+	$pdo = null;
 }
 
 function pesquisarInternacaoId($interna_id){
