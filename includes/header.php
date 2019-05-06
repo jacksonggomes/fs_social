@@ -13,8 +13,7 @@
 <body>
 
   <div class="header">
-    <h1>Header</h1>
-    <p>Resize the browser window to see the responsive effect.</p>
+    <img src="images/sapagrupado.png">
   </div>
 
   <div class="topnav">

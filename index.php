@@ -15,12 +15,15 @@ $u = new Usuario;
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-	<div id="corpo-form">
+<div id="logo">
+	<img src="images/sapagrupado.png">
+</div>
+<div id="corpo-form">
 	<h1>Entrar</h1>
 <form method="POST">
 	<input type="email" name="email" placeholder="E-mail">
 	<input type="password" name="senha" placeholder="Senha">
-	<input type="submit" value="Entrar" name="acessar">
+	<input type="submit" value="Acessar" name="acessar">
 	<a href="cadastrar-usuario.php">Ainda não é inscrito?<strong>Cadastre-se!</strong></a>	
 </form>
 </div>

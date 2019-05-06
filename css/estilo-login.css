@@ -3,41 +3,51 @@
 	padding: 0px;
 }
 body{
-	background-image: url("../images/fundo1.jpg");
-	background-position: 50% 50%;
-	color: white;
+	/*background-image: url("../images/fundo1.jpg");
+	background-position: 50% 50%;*/
+	color: black;
 	font-family: arial;
 }
 input{
 	display: block;
-	height: 55px;
+	height: 40px;
 	width: 400px;
 	margin: 10px;
-	border-radius: 30px;s
-	border: 1px solid white;
+	border-radius: 30px;
+	border: 1px white;
 	font-size: 16pt;
-	padding: 10px 20px;
-	background-color: rgba(255,255,255,0.1);
-	color: white;
+	padding: 5px 20px;
+	background-color: #33CCCC;
+	color: black;
 	outline: none;
 }
 select{
 	display: block;
-	height: 55px;
+	height: 40px;
 	width: 440px;
 	margin: 10px;
 	border-radius: 30px;s
 	border: 1px solid white;
-	font-size: 16pt;
-	padding: 10px 20px;
+	font-size: 12pt;
+	padding: 5px 10px;
 	background-color: rgba(255,255,255,0.1);
-	color: #87CEFA;
+	color: black;
 	outline: none;
+}
+div#logo{
+	/*background-color: red;*/
+	width: 420px;
+	margin: 50px auto 0px auto;
+}
+div#logo-cad{
+	/*background-color: red;*/
+	width: 420px;
+	margin: 10px auto 0px auto;
 }
 div#corpo-form{
 	/*background-color: red;*/
 	width: 420px;
-	margin: 150px auto 0px auto;
+	margin: 0px auto 0px auto;
 }
 div#corpo-form h1{
 	text-align: center;
@@ -45,15 +55,16 @@ div#corpo-form h1{
 }
 div#corpo-form-cad{
 	/*background-color: red;*/
+	font-size: 12pt;
 	width: 420px;
-	margin: 30px auto 0px auto;
+	margin: 0px auto 0px auto;
 }
 div#corpo-form-cad h1{
 	text-align: center;
-	padding: 20px;
+	padding: 10px;
 }
 a{
-	color: white;
+	color: black;
 	text-decoration: none;
 	text-align: center;
 	display: block;
@@ -61,12 +72,32 @@ a{
 a:hover{
 	text-decoration: underline;
 }
-input[type=submit]{
-	background-color: #FF0066;
-	border: none;
-	cursor: pointer;
-	height: 55px;
-	width: 440px;
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  height: 50px;
+  width: 440px;
+  padding: 5px 10px;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+input[type=submit]#voltar{
+  background-color: #f44336;
+  color: white;
+  color: white;
+  border: none;
+  cursor: pointer;
+  height: 50px;
+  width: 440px;
+  padding: 5px 10px;
+}
+
+input[type=submit]#voltar:hover {
+  background-color: red;
 }
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #fff;

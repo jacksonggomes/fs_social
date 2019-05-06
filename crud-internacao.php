@@ -16,7 +16,28 @@ include_once 'includes/functions.php';
   <?php
   if(isset($_GET['pac_id'])):
     $resultado_paciente = pesquisarPacienteId($_GET['pac_id']);
+    $Internado = pesquisaInternado($_GET['pac_id']);
+    $status = False;
   endif;
+  foreach ($Internado as $key) {
+    if ($key['interna_status'] == "Internado")
+      {
+        $status = True;
+    }
+  }
+  if ($status){
+    ?>
+          <div class="msg-erro" align="center">
+            Paciente já possui uma internação aberta!
+          </div>
+          <br>
+            <form action="pesquisar-paciente.php">
+              <div class="row">
+                <input type="submit" value="Voltar">
+              </div>
+            </form>
+        <?php
+      }else{
   foreach ($resultado_paciente as $dados):
   ?>
     <form id="formulario" action="php_action/create-internacao.php" method="POST">
@@ -74,7 +95,8 @@ include_once 'includes/functions.php';
       <input type="submit" name="btn-cadastrar-internacao" value="Enviar">
     </div>        
   </form>  
-  <?php endforeach; ?>
+  <?php endforeach;
+  }?>
 </div>
 </div>
 </div>

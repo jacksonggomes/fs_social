@@ -12,12 +12,17 @@ include_once 'includes/header.php';
 // Select
 if(isset($_GET['btn-pesquisar-interna'])):
   $resultado_internacao = pesquisarInternacao($_GET['ncadsus'],$_GET['nnome']);
+  $resultado_internacao_boolean = pesquisarInternacaoBoolean($_GET['ncadsus'],$_GET['nnome']);
   ?>
   <div class="column middle">
     <div class="container">
       <div class="row">
         <div>
           <h3> Internações </h3>
+          <?php
+            if(($resultado_internacao_boolean)):
+                foreach ($resultado_internacao as $dados):
+                  ?>
           <table>
             <thead>
               <tr>
@@ -29,11 +34,7 @@ if(isset($_GET['btn-pesquisar-interna'])):
             </thead>
 
             <tbody>
-              <?php
-              if(count ($resultado_internacao)):
-                foreach ($resultado_internacao as $dados):
-                  ?>
-                  <tr>
+              <tr>
                     <td><?php echo $dados['interna_data']; ?></td>
                     <td><?php echo $dados['interna_admissao']; ?></td>
                     <td><?php echo $dados['interna_clinica']; ?></td>
@@ -43,15 +44,10 @@ if(isset($_GET['btn-pesquisar-interna'])):
                   <?php 
                 endforeach;
                 else: ?>
-
-                  <tr>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                  </tr>
-
-                  <?php 
+                <div class="msg-erro" align="center">
+                 Internação não encontrada!
+                </div>
+                <?php 
                 endif;
                 ?>
               </tbody>

@@ -39,6 +39,26 @@ function pesquisarPacienteId($pac_id){
 	return $resultado_paciente;
 	$pdo = null;
 }
+function pesquisarPacienteBoolean($pac_cadsus, $pac_nome){
+	if ($pac_cadsus != ""){
+		$pdo = db_connect(); 
+		$resultado_paciente = $pdo->prepare("SELECT pac_id, pac_cadsus, pac_nome, pac_telefone, pac_idade FROM paciente WHERE pac_cadsus = '$pac_cadsus'");
+		$resultado_paciente->execute();
+		if($resultado_paciente->rowCount() > 0)
+		{
+			return True;
+		}
+	}else{
+		$pdo = db_connect(); 
+		$resultado_paciente = $pdo->prepare("SELECT pac_id, pac_cadsus, pac_nome, pac_telefone, pac_idade FROM paciente WHERE pac_nome like '%$pac_nome%'");
+		$resultado_paciente->execute();
+		if($resultado_paciente->rowCount() > 0)
+		{
+			return True;
+		}
+	}
+	$pdo = null;
+}
 
 function pesquisarBairroPaciente($pac_bairro_id){
 	$pdo = db_connect();
@@ -74,10 +94,38 @@ function pesquisarInternacao($cadsus, $nome){
 	$pdo = null;
 }
 
+function pesquisarInternacaoBoolean($cadsus, $nome){
+	$pdo = db_connect();
+	if ($cadsus != ""){
+	$resultado_internacao =  $pdo->prepare("SELECT * FROM internacao WHERE interna_pac_id = (SELECT pac_id FROM paciente WHERE pac_cadsus = '$cadsus')");	
+	$resultado_internacao->execute();
+	if($resultado_internacao->rowCount() > 0)
+		{
+			return True;
+		}
+}else{
+	$resultado_internacao =  $pdo->prepare("SELECT * FROM internacao WHERE interna_pac_id = (SELECT pac_id FROM paciente WHERE pac_nome like '%$nome%')");	
+	$resultado_internacao->execute();
+	if($resultado_internacao->rowCount() > 0)
+		{
+			return True;
+		}
+}
+	$pdo = null;
+}
+
 function pesquisarInternacaoId($interna_id){
 	$pdo = db_connect(); 
 	$resultado_internacao = $pdo->prepare("SELECT * FROM internacao WHERE interna_id = '$interna_id'");
 	$resultado_internacao->execute();
 	$pdo = null;
 	return $resultado_internacao;
+}
+
+function pesquisaInternado($paciente_id){
+	$pdo = db_connect(); 
+	$resultado_internado =  $pdo->prepare("SELECT interna_status FROM internacao WHERE interna_pac_id = (SELECT pac_id FROM paciente WHERE pac_id = '$paciente_id')");
+	$resultado_internado->execute();
+	$pdo = null;
+	return $resultado_internado;
 }

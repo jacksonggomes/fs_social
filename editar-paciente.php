@@ -132,7 +132,7 @@ endif;
       <div class="col-25"><label for="vresponsavel">Vínculo</label></div>
       <div class="col-75">
         <select id="vresponsavel" name="nvinculoresponsavel">
-          <option selected><?php echo $dados['pac_responsavel_vinc'];?></option>
+          <option value="<?php echo $dados['pac_responsavel_vinc'];?>"selected><?php echo $dados['pac_responsavel_vinc'];?></option>
           <option value="Pai">1) Pai</option>
           <option value="Mãe">2) Mãe</option>
           <option value="Irmão/Irmã">3) Irmão / Irmã</option>
@@ -169,7 +169,7 @@ endif;
         <div class="col-25"><label for="estado">Estado de onde o paciente veio</label></div>
         <div class="col-75">
           <select id="estado" name="nestado">
-            <option selected><?php echo $dados['pac_estado'];?></option>
+            <option value="<?php echo $dados['pac_estado'];?>" selected><?php echo $dados['pac_estado'];?></option>
             <optgroup label="Região Norte">
               <option value="Amazonas">1 - Amazonas</option>
               <option value="Roraima">2 - Roraima (RR)</option>
@@ -236,7 +236,7 @@ endif;
       <div class="col-25"><label for="agregacao">Agregação familiar</label></div>
       <div class="col-75">
         <select id="agregacao" name="nagregacao">
-          <option selected><?php echo $dados['pac_agregacao'];?></option>
+          <option value="<?php echo $dados['pac_agregacao'];?>" selected><?php echo $dados['pac_agregacao'];?></option>
           <option value="Reside Sozinho">1) Reside Sozinho</option>
           <option value="Reside com pais e/ou irmãos">2) Reside com pais e/ou irmãos</option>
           <option value="Rezide com amigos">3) Rezide com amigos</option>
@@ -252,7 +252,7 @@ endif;
       <div class="col-25"><label for="escolaridade">Escolaridade</label></div>
       <div class="col-75">
         <select id="escolaridade" name="nescolaridade">
-          <option selected><?php echo $dados['pac_escolaridade'];?></option>
+          <option value="<?php echo $dados['pac_escolaridade'];?>" selected><?php echo $dados['pac_escolaridade'];?></option>
           <option value="Não alfabetizado">1) Não alfabetizado</option>
           <option value="Alfabetizado">2) Alfabetizado</option>
           <option value="FIE">3) FIE</option>
@@ -273,7 +273,7 @@ endif;
       <div class="col-25"><label for="pessoas">Nº de pessoas na residência</label></div>
       <div class="col-75">
         <select id="pessoas" name="npessoas">
-          <option selected><?php echo $dados['pac_pessoas_res'];?></option>
+          <option value="<?php echo $dados['pac_pessoas_res'];?>" selected><?php echo $dados['pac_pessoas_res'];?></option>
           <option value="01 a 03">1) 01 a 03 pessoas</option>
           <option value="04 a 06">2) 04 a 06 pessoas</option>
           <option value="07 a 09">3) 07 a 09 pessoas</option>
@@ -291,7 +291,7 @@ endif;
         <div class="col-25"><label for="renda">Renda familiar</label></div>
         <div class="col-75">
           <select id="renda" name="nrenda">
-            <option selected><?php echo $dados['pac_renda'];?></option>
+            <option value="<?php echo $dados['pac_renda'];?>" selected><?php echo $dados['pac_renda'];?></option>
             <option value="Até 01 SM">1) Até 01 SM</option>
             <option value="Mais de 01 até 03 SM">2) Mais de 01 até 03 SM</option>
             <option value="Mais de 03 até 05 SM">3) Mais de 03 até 05 SM</option>
@@ -306,7 +306,7 @@ endif;
       <div class="col-25"><label for="casa">Casa</label></div>
       <div class="col-75">
         <select id="casa" name="ncasa">
-          <option selected><?php echo $dados['pac_tipo_casa'];?></option>
+          <option value="<?php echo $dados['pac_tipo_casa'];?>" selected><?php echo $dados['pac_tipo_casa'];?></option>
           <option value="Própria">1) Própria</option>
           <option value="Cedida">2) Cedida</option>
           <option value="Alugada">3) Alugada</option>
@@ -319,7 +319,7 @@ endif;
       <div class="col-25"><label for="construcaocasa">Construção da casa</label></div>
       <div class="col-75">
         <select id="contrucaocasa" name="nconstrucaocasa">
-          <option selected><?php echo $dados['pac_const_casa'];?></option>
+          <option value="<?php echo $dados['pac_const_casa'];?>" selected><?php echo $dados['pac_const_casa'];?></option>
           <option value="Alvenaria">1) Alvenaria</option>
           <option value="Madeira">2) Madeira</option>
           <option value="Taipa">3) Taipa</option>
@@ -339,7 +339,7 @@ endif;
       <div class="col-25"><label for="esgoto">Esgoto</label></div>
       <div class="col-75">
         <select id="esgoto" name="nesgoto">
-          <option selected><?php echo $dados['pac_esgoto'];?></option>
+          <option value="<?php echo $dados['pac_esgoto'];?>" selected><?php echo $dados['pac_esgoto'];?></option>
           <option value="Tubulação">1) Tubulação</option>
           <option value="Fossa biológica">2) Fossa biológica</option>
           <option value="Não possui">3) Céu aberto</option>
@@ -351,7 +351,7 @@ endif;
       <div class="col-25"><label for="agua">Água</label></div>
       <div class="col-75">
         <select id="agua" name="nagua">
-          <option selected><?php echo $dados['pac_agua'];?></option>
+          <option value="<?php echo $dados['pac_agua'];?>"selected><?php echo $dados['pac_agua'];?></option>
           <option value="Rede básica">1) Rede básica</option>
           <option value="Poço artesiano">2) Poço artesiano</option>
           <option value="Da chuva">3) Da chuva</option>
@@ -364,7 +364,7 @@ endif;
       <div class="col-25"><label for="luz">Luz</label></div>
       <div class="col-75">
         <select id="luz" name="nluz">
-          <option selected><?php echo $dados['pac_luz'];?></option>
+          <option value="<?php echo $dados['pac_luz'];?>" selected><?php echo $dados['pac_luz'];?></option>
           <option value="Elétrica regularizada">1) Elétrica regularizada</option>
           <option value="Gerador de energia">2) Gerador de energia</option>
           <option value="Solar">3) Solar</option>
@@ -380,7 +380,7 @@ endif;
       <div class="col-25"><label for="ocupacao">Ocupação atual</label></div>
       <div class="col-75">
         <select id="ocupacao" name="nocupacao" onchange="verifica(this.value)">
-          <option selected><?php echo $dados['pac_ocupa'];?></option>
+          <option value="<?php echo $dados['pac_ocupa'];?>" selected><?php echo $dados['pac_ocupa'];?></option>
           <option value="Do lar">1) Do lar</option>
           <option value="Estudante">2) Estudante</option>
           <option value="Desempregado">3) Desempregado</option>
@@ -403,7 +403,7 @@ endif;
       <div class="col-25"><label for="relacaotrabalhista">Relação trabalhista</label></div>
       <div class="col-75">
         <select id="relacaotrabalhista" name="nrelacaotrabalhista">
-          <option selected><?php echo $dados['pac_relacao_trabalhista'];?></option>
+          <option value="<?php echo $dados['pac_relacao_trabalhista'];?>" selected><?php echo $dados['pac_relacao_trabalhista'];?></option>
           <option value="CLT">1) CLT</option>
           <option value="Estatutário">2) Estatutário</option>
           <option value="Autônomo">3) Avulso</option>
@@ -416,7 +416,7 @@ endif;
       <div class="col-25"><label for="vinculoprevidenciario">Vínculo previdenciário</label></div>
       <div class="col-75">
         <select id="vinculoprevidenciario" name="nvinculoprevidenciario">
-          <option selected><?php echo $dados['pac_vinculo_prev'];?></option>
+          <option value="<?php echo $dados['pac_vinculo_prev'];?>" selected><?php echo $dados['pac_vinculo_prev'];?></option>
           <option value="Empregado">1) Empregado</option>
           <option value="Empregador">2) Empregador</option>
           <option value="Autônomo">3) Autônomo</option>
@@ -434,7 +434,7 @@ endif;
       <div class="col-25"><label for="orgaovinculacao">Orgão de vinculação</label></div>
       <div class="col-75">
         <select id="orgaovinculacao" name="norgaovinculacao">
-          <option selected><?php echo $dados['pac_orgao_vinc'];?></option>
+          <option value="<?php echo $dados['pac_orgao_vinc'];?>" selected><?php echo $dados['pac_orgao_vinc'];?></option>
           <option value="INSS">1) INSS</option>
           <option value="Amazon PREV">2) Amazon PREV</option>
           <option value="Manaus Prev">3) Manaus Prev</option>

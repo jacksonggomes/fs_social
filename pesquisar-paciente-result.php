@@ -12,12 +12,17 @@ include_once 'includes/header.php';
 // Select
 if(isset($_GET['btn-pesquisar-pac'])):
   $resultado_paciente = pesquisarPaciente($_GET['ncadsus'], $_GET['nnome']);
-  ?>
+  $resultado_paciente_boolean = pesquisarPacienteBoolean($_GET['ncadsus'], $_GET['nnome']);
+?>
   <div class="column middle">
     <div class="container">
       <div class="row">
         <div>
-          <h3> Pacientes </h3>
+          <h3> Pacientes </h3>                      
+          <?php
+          if($resultado_paciente_boolean){
+            foreach ($resultado_paciente as $dados){
+          ?>
           <table>
             <thead>
               <tr>
@@ -29,10 +34,6 @@ if(isset($_GET['btn-pesquisar-pac'])):
             </thead>
 
             <tbody>
-              <?php
-              if(count ($resultado_paciente)):
-                foreach ($resultado_paciente as $dados):
-                  ?>
                   <tr>
                     <td><?php echo $dados['pac_cadsus']; ?></td>
                     <td><?php echo $dados['pac_nome']; ?></td>
@@ -41,22 +42,16 @@ if(isset($_GET['btn-pesquisar-pac'])):
                     <td><a href="editar-paciente.php?pac_id=<?php echo $dados['pac_id']; ?>" title="Editar paciente"><img src="images/edit.png" height="40" width="40"></a></td>
                     <td><a href="crud-internacao.php?pac_id=<?php echo $dados['pac_id']; ?>" title="Internar paciente"><img src="images/internar1.png" height="50" width="50"></a></td>
                   </tr>
-                  <?php 
-                endforeach;
-                else: ?>
-
-                  <tr>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                  </tr>
-
-                  <?php 
-                endif;
-                ?>
-              </tbody>
-            </table>
+            </tbody>
+        </table>
+            <?php
+              }
+            }else{?>  
+              <div class="msg-erro" align="center">
+                 Paciente não encontrado!
+              </div>
+        <?php
+        }?>
             <br>
             <form action="pesquisar-paciente.php">
               <div class="row">
@@ -67,7 +62,7 @@ if(isset($_GET['btn-pesquisar-pac'])):
         </div>
       </div>
     </div>
-    <?php 
+  <?php 
   endif;
   // Footer
   include_once 'includes/footer.php';

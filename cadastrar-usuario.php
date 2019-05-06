@@ -15,21 +15,27 @@ $u = new Usuario;
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-	<div id="corpo-form-cad">
-	<h1>Cadastrar</h1>
+<div id="logo-cad">
+	<img src="images/sapagrupado.png">
+</div>
+<div id="corpo-form-cad">
+<h1>Cadastrar Usuário</h1>
 <form method="POST">
 	<input type="text" name="nome" placeholder="Nome completo">
 	<input type="text" name="cargo" placeholder="Cargo">
-	<select id="perfil" name="perfil">
-            <option selected>--Selecione um perfil--</option>
-            <option value="Usuário">Usuário</option>
-            <option value="Administrador">Administrador</option>
+	<select id="perfil" name="perfil" hidden>
+            <option selected value="Usuário">Usuário</option>
     </select>
 	<input type="email" name="email" placeholder="Usuário">
 	<input type="password" name="senha" placeholder="Senha">
 	<input type="password" name="confSenha" placeholder="Confirmar senha">
 	<input type="submit" value="Cadastrar" name="cadastrar">
 </form>
+<form action="index.php">
+    <div class="row">
+        <input id="voltar" type="submit" value="Voltar">
+    </div>
+ </form>
 </div>
 <?php
 //verificar se clicou no botão

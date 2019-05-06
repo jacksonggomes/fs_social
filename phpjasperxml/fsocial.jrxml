@@ -153,6 +153,10 @@
 		<property name="com.jaspersoft.studio.field.label" value="pac_pessoas_rend"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
 	</field>
+	<field name="pac_renda" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="pac_renda"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
 	<field name="pac_tipo_casa" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="pac_tipo_casa"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
@@ -545,13 +549,13 @@
 				<text><![CDATA[Naturalidade]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="390" y="260" width="90" height="25" uuid="0b7b0410-3c71-4b4f-9add-6303acbc42db">
+				<reportElement x="300" y="260" width="90" height="25" uuid="0b7b0410-3c71-4b4f-9add-6303acbc42db">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{cid_desc}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="320" y="260" width="70" height="25" uuid="8aa1f704-d2c7-4e48-a1ff-e0daaedf270e">
+				<reportElement x="220" y="260" width="100" height="25" uuid="8aa1f704-d2c7-4e48-a1ff-e0daaedf270e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -560,7 +564,7 @@
 				<text><![CDATA[Procedência]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="480" y="260" width="70" height="25" uuid="8aebe449-babc-4970-bae9-0f91c3c7a7ca">
+				<reportElement x="400" y="260" width="100" height="25" uuid="8aebe449-babc-4970-bae9-0f91c3c7a7ca">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{pac_estado}]]></textFieldExpression>
@@ -667,19 +671,34 @@
 				<text><![CDATA[Nº Pessoas na residência]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="480" y="371" width="70" height="25" uuid="e2c2aec6-5d87-456b-b3b3-bfb70f6ff05d">
+				<reportElement x="300" y="371" width="70" height="25" uuid="e2c2aec6-5d87-456b-b3b3-bfb70f6ff05d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{pac_pessoas_rend}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="320" y="371" width="160" height="25" uuid="5ec6c374-171c-4924-8371-9262ec412739">
+				<reportElement x="150" y="371" width="160" height="25" uuid="5ec6c374-171c-4924-8371-9262ec412739">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nº pessoas c/ rendimentos na residência]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="371" width="70" height="25" uuid="e2c2aec6-5d87-456b-b3b3-bfb70f6ff05d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{pac_renda}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="320" y="371" width="90" height="25" uuid="5ec6c374-171c-4924-8371-9262ec412739">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Renda Mensal]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="99" y="396" width="100" height="25" uuid="a06cb40e-08f2-4afc-922f-6a8b4c094bc7">
