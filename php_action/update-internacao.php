@@ -1,34 +1,57 @@
 <?php
+session_start();
+  if(!isset($_SESSION['usu_id']))
+  {
+    header("location: index.php");
+    exit;
+  }
 
 require_once 'init.php';
 if(isset($_POST['btn-atualizar-internacao'])):
 	$id = ($_POST['nid']);
-	$data = ($_POST['ndatainternacao']);
 	$admissao = ($_POST['nadmissao']);
 	$clinica = ($_POST['nclinica']);
 	$leito = ($_POST['nleito']);
 	$diagnostico = ($_POST['ndiagnostico']);
 	$status = ($_POST['nstatus']);	
+	$movimentacao = ($_POST['nmovimentacao']);
+	if($status == "Internado"){
+		$movimentacao = NULL;
+	}
 	$idpaciente = ($_POST['npac_id']);
 
 // insere no banco
 	$PDO = db_connect();
 //$sql = "INSERT INTO users(name, email, password) VALUES(:name, :email, :passwordHash)";
-	$sql = "UPDATE internacao SET interna_data = :data, interna_admissao = :admissao, interna_clinica = :clinica, interna_leito = :leito, interna_diagnostico = :diagnostico, interna_status = :status, interna_pac_id = :idpaciente WHERE interna_id = :id";
+	$sql = "UPDATE internacao SET interna_admissao = :admissao, interna_clinica = :clinica, interna_leito = :leito, interna_diagnostico = :diagnostico, interna_status = :status, interna_mov = :movimentacao, interna_pac_id = :idpaciente WHERE interna_id = :id";
 
 	$stmt = $PDO->prepare($sql);
-	$stmt->bindParam(':data', $data);
 	$stmt->bindParam(':admissao', $admissao);
 	$stmt->bindParam(':clinica', $clinica);
 	$stmt->bindParam(':leito', $leito);
 	$stmt->bindParam(':diagnostico', $diagnostico);	
-	$stmt->bindParam(':status', $status);	
+	$stmt->bindParam(':status', $status);
+	$stmt->bindParam(':movimentacao', $movimentacao);	
 	$stmt->bindParam(':idpaciente', $idpaciente);
 	$stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
 	if ($stmt->execute())
 	{
-		header('Location: ../pesquisar-internacao.php');
+		$sql1 = "INSERT INTO demandas (dem_data, dem_status, dem_usu_id) 
+		VALUES (:data, :status, :usuario)";
+		$stmt = $PDO->prepare($sql1);
+		$stmt->bindParam(':data', $movimentacao);
+		$stmt->bindParam(':status', $status);
+		$stmt->bindParam(':usuario', $_SESSION['usu_id']);
+		if ($stmt->execute())
+		{
+			header('Location: ../pesquisar-internacao.php');
+		}
+		else
+		{
+			echo "Erro ao alterar";
+			print_r($stmt->errorInfo());
+		}
 	}
 	else
 	{

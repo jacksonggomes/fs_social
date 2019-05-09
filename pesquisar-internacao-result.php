@@ -11,7 +11,7 @@ include_once 'includes/functions.php';
 include_once 'includes/header.php';
 // Select
 if(isset($_GET['btn-pesquisar-interna'])):
-  $resultado_internacao = pesquisarInternacao($_GET['ncadsus'],$_GET['nnome']);
+  
   $resultado_internacao_boolean = pesquisarInternacaoBoolean($_GET['ncadsus'],$_GET['nnome']);
   ?>
   <div class="column middle">
@@ -20,21 +20,22 @@ if(isset($_GET['btn-pesquisar-interna'])):
         <div>
           <h3> Internações </h3>
           <?php
-            if(($resultado_internacao_boolean)):
-                foreach ($resultado_internacao as $dados):
-                  ?>
-          <table>
-            <thead>
+            if($resultado_internacao_boolean):
+              $resultado_internacao = pesquisarInternacao($_GET['ncadsus'],$_GET['nnome']);
+              foreach ($resultado_internacao as $dados):
+              ?>
+              <table>
+              <thead>
               <tr>
                 <th>Data de Internação:</th>
                 <th>Admissão:</th>
                 <th>Clínica:</th>
                 <th>Status:</th>
               </tr>
-            </thead>
+              </thead>
 
-            <tbody>
-              <tr>
+              <tbody>
+                <tr>
                     <td><?php echo $dados['interna_data']; ?></td>
                     <td><?php echo $dados['interna_admissao']; ?></td>
                     <td><?php echo $dados['interna_clinica']; ?></td>
@@ -42,16 +43,15 @@ if(isset($_GET['btn-pesquisar-interna'])):
                     <td><a href="editar-internacao.php?interna_id=<?php echo $dados['interna_id']; ?>" title="Editar Internação"><img src="images/edit.png" height="40" width="40"></a></td>
                   </tr>
                   <?php 
-                endforeach;
-                else: ?>
+              endforeach;
+              ?>
+              </tbody>
+            </table>
+            <?php else: ?>
                 <div class="msg-erro" align="center">
                  Internação não encontrada!
                 </div>
-                <?php 
-                endif;
-                ?>
-              </tbody>
-            </table>
+            <?php endif;?>
             <br>
             <form action="pesquisar-internacao.php">
               <div class="row">

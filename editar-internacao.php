@@ -32,6 +32,11 @@ endif;
           </div>
 
           <div class="row">
+          <div class="col-25"><label for="nomepaciente">Nome</label></div>
+          <div class="col-75"><input type="text" id="nomepaciente" name="nnomepaciente" value="<?php echo $dados['pac_nome'];?>" readonly></div>
+        </div>
+
+          <div class="row">
             <div class="col-25"><label for="fia">Admissão</label></div>
             <div class="col-75"><input type="text" id="admissao" name="nadmissao" value="<?php echo $dados['interna_admissao'];?>" required></div>
           </div>
@@ -57,7 +62,7 @@ endif;
     <div class="row">
       <div class="col-25"><label for="status">Status</label></div>
       <div class="col-75">
-        <select id="status" name="nstatus">
+        <select id="status" name="nstatus" onchange="verificaMov(this.value)">
           <option selected><?php echo $dados['interna_status'];?></option>
           <option value="Internado">1) Internado</option>
           <option value="Alta">2) Alta</option>
@@ -66,6 +71,10 @@ endif;
         </select>
       </div>
     </div>
+    <div class="row">
+            <div class="col-25"><label for="movimentacao">Data da Alteração</label></div>
+            <div class="col-75"><input type="date" id="movimentacao" name="nmovimentacao" value="<?php echo $dados['interna_mov'];?>" disebled required></div>
+          </div>
 
   </fieldset>
   <?php endforeach; ?>

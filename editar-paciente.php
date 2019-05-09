@@ -391,12 +391,12 @@ endif;
 
     <div class="row">
       <div class="col-25"><label for="profissao">Profissão</label></div>
-      <div class="col-75"><input type="text" id="profissao" name="nprofissao" value="<?php echo $dados['pac_profissao'];?>" disebled></div>
+      <div class="col-75"><input type="text" id="profissao" name="nprofissao" value="<?php echo $dados['pac_profissao'];?>" disebled requirided></div>
     </div>
 
     <div class="row">
       <div class="col-25"><label for="localtrabalho">Local de trabalho</label></div>
-      <div class="col-75"><input type="text" id="localtrabalho" name="nlocaltrabalho" value="<?php echo $dados['pac_local_trabalho'];?>" disebled></div>
+      <div class="col-75"><input type="text" id="localtrabalho" name="nlocaltrabalho" value="<?php echo $dados['pac_local_trabalho'];?>" disebled requirided></div>
     </div>
 
     <div class="row">

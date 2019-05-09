@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+  if(!isset($_SESSION['usu_id']))
+  {
+    header("location: index.php");
+    exit;
+  }
+
 require_once 'init.php';
 
 if(isset($_POST['btn-cadastrar-internacao'])):
@@ -35,7 +42,22 @@ if(isset($_POST['btn-cadastrar-internacao'])):
 	
 	if ($stmt->execute())
 	{
-		header('Location: ../pesquisar-internacao.php');
+		
+		$sql1 = "INSERT INTO demandas (dem_data, dem_status, dem_usu_id) 
+		VALUES (:data, :status, :usuario)";
+		$stmt = $PDO->prepare($sql1);
+		$stmt->bindParam(':data', $datainternacao);
+		$stmt->bindParam(':status', $status);
+		$stmt->bindParam(':usuario', $_SESSION['usu_id']);
+		if ($stmt->execute())
+		{
+			header('Location: ../pesquisar-internacao.php');
+		}
+		else
+		{
+			echo "Erro ao alterar";
+			print_r($stmt->errorInfo());
+		}
 	}
 	else
 	{

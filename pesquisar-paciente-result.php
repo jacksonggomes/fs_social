@@ -11,7 +11,6 @@ include_once 'includes/functions.php';
 include_once 'includes/header.php';
 // Select
 if(isset($_GET['btn-pesquisar-pac'])):
-  $resultado_paciente = pesquisarPaciente($_GET['ncadsus'], $_GET['nnome']);
   $resultado_paciente_boolean = pesquisarPacienteBoolean($_GET['ncadsus'], $_GET['nnome']);
 ?>
   <div class="column middle">
@@ -20,8 +19,9 @@ if(isset($_GET['btn-pesquisar-pac'])):
         <div>
           <h3> Pacientes </h3>                      
           <?php
-          if($resultado_paciente_boolean){
-            foreach ($resultado_paciente as $dados){
+          if($resultado_paciente_boolean):
+            $resultado_paciente = pesquisarPaciente($_GET['ncadsus'], $_GET['nnome']);
+            foreach ($resultado_paciente as $dados):
           ?>
           <table>
             <thead>
@@ -42,16 +42,16 @@ if(isset($_GET['btn-pesquisar-pac'])):
                     <td><a href="editar-paciente.php?pac_id=<?php echo $dados['pac_id']; ?>" title="Editar paciente"><img src="images/edit.png" height="40" width="40"></a></td>
                     <td><a href="crud-internacao.php?pac_id=<?php echo $dados['pac_id']; ?>" title="Internar paciente"><img src="images/internar1.png" height="50" width="50"></a></td>
                   </tr>
-            </tbody>
-        </table>
-            <?php
-              }
-            }else{?>  
-              <div class="msg-erro" align="center">
-                 Paciente não encontrado!
-              </div>
-        <?php
-        }?>
+            <?php 
+              endforeach;
+              ?>
+              </tbody>
+            </table>
+            <?php else: ?>
+                <div class="msg-erro" align="center">
+                 Paciente não encontrada!
+                </div>
+            <?php endif;?>
             <br>
             <form action="pesquisar-paciente.php">
               <div class="row">

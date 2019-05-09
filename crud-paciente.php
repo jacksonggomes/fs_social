@@ -371,12 +371,12 @@ include_once 'includes/scripts.php';
 
        <div class="row">
         <div class="col-25"><label for="profissao">Profissão</label></div>
-        <div class="col-75"><input type="text" id="profissao" name="nprofissao" disabled></div>
+        <div class="col-75"><input type="text" id="profissao" name="nprofissao" disabled required></div>
       </div>
 
       <div class="row">
         <div class="col-25"><label for="localtrabalho">Local de trabalho</label></div>
-        <div class="col-75"><input type="text" id="localtrabalho" name="nlocaltrabalho" disabled></div>
+        <div class="col-75"><input type="text" id="localtrabalho" name="nlocaltrabalho" disabled required></div>
       </div>
 
       <div class="row">

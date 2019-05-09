@@ -228,7 +228,7 @@
 		<band height="93" splitType="Stretch">
 			<image>
 				<reportElement x="0" y="0" width="560" height="90" uuid="f07e7400-def1-4a54-84ff-f4b34f19e468"/>
-				<imageExpression><![CDATA["C:/Users/jackson/Downloads/cabecalho.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["../images/cabecalho.jpg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="11" y="23" width="306" height="17" uuid="57f003a5-6ec9-4fa3-8011-c2e956d4fd30"/>
@@ -549,7 +549,7 @@
 				<text><![CDATA[Naturalidade]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="300" y="260" width="90" height="25" uuid="0b7b0410-3c71-4b4f-9add-6303acbc42db">
+				<reportElement x="290" y="260" width="130" height="25" uuid="0b7b0410-3c71-4b4f-9add-6303acbc42db">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{cid_desc}]]></textFieldExpression>
@@ -564,7 +564,7 @@
 				<text><![CDATA[Procedência]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="400" y="260" width="100" height="25" uuid="8aebe449-babc-4970-bae9-0f91c3c7a7ca">
+				<reportElement x="430" y="260" width="100" height="25" uuid="8aebe449-babc-4970-bae9-0f91c3c7a7ca">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{pac_estado}]]></textFieldExpression>
@@ -671,19 +671,19 @@
 				<text><![CDATA[Nº Pessoas na residência]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="300" y="371" width="70" height="25" uuid="e2c2aec6-5d87-456b-b3b3-bfb70f6ff05d">
+				<reportElement x="280" y="371" width="70" height="25" uuid="e2c2aec6-5d87-456b-b3b3-bfb70f6ff05d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{pac_pessoas_rend}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="150" y="371" width="160" height="25" uuid="5ec6c374-171c-4924-8371-9262ec412739">
+				<reportElement x="180" y="371" width="100" height="25" uuid="5ec6c374-171c-4924-8371-9262ec412739">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Nº pessoas c/ rendimentos na residência]]></text>
+				<text><![CDATA[Nº pessoas c/ renda]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="410" y="371" width="70" height="25" uuid="e2c2aec6-5d87-456b-b3b3-bfb70f6ff05d">
@@ -746,13 +746,13 @@
 				<text><![CDATA[Água]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="420" y="422" width="100" height="25" uuid="b5e03714-d57f-4e05-9486-6d3bd1969b20">
+				<reportElement x="390" y="422" width="100" height="25" uuid="b5e03714-d57f-4e05-9486-6d3bd1969b20">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{pac_luz}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="320" y="422" width="100" height="25" uuid="6763cd0e-4050-4cdd-b250-c2202e34173d">
+				<reportElement x="321" y="422" width="100" height="25" uuid="6763cd0e-4050-4cdd-b250-c2202e34173d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -1134,7 +1134,7 @@
 		<band height="54" splitType="Stretch">
 			<image>
 				<reportElement x="0" y="4" width="555" height="50" uuid="2dabdf18-70f0-47f5-a44f-8c03047d9e99"/>
-				<imageExpression><![CDATA["C:/Users/jackson/Downloads/rodape.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["../images/rodape.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</pageFooter>

@@ -6,6 +6,7 @@ $u = new Usuario;
 <html lang="pt-br">
 <head>
   <title>Página de Login SAP</title>
+  <link rel="icon" type="shortcut icon" href="images/sap.ico" />
   <link rel="stylesheet" href="css/estilo-login.css"/>
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -21,7 +22,7 @@ $u = new Usuario;
 <div id="corpo-form">
 	<h1>Entrar</h1>
 <form method="POST">
-	<input type="email" name="email" placeholder="E-mail">
+	<input type="text" name="login" placeholder="Usuário">
 	<input type="password" name="senha" placeholder="Senha">
 	<input type="submit" value="Acessar" name="acessar">
 	<a href="cadastrar-usuario.php">Ainda não é inscrito?<strong>Cadastre-se!</strong></a>	
@@ -29,16 +30,16 @@ $u = new Usuario;
 </div>
 <?php
 //verificar se clicou no botão
-if(isset($_POST['email'])){
-	$email = addslashes($_POST['email']);
+if(isset($_POST['login'])){
+	$login = addslashes($_POST['login']);
 	$senha = addslashes($_POST['senha']);
 	//verificar se esta preenchido
-	if(!empty($email) && !empty($senha))
+	if(!empty($login) && !empty($senha))
 	{
 		$u->conectar("fsocial","localhost","root","");
 		if($u->msgErro == "")
 		{
-			if($u->logar($email, $senha))
+			if($u->logar($login, $senha))
 			{
 				header("location: home.php");
 			}else{

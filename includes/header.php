@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
   <title>Página inicial</title>
+  <link rel="icon" type="shortcut icon" href="images/sap.ico" />
   <link rel="stylesheet" href="css/estilo.css"/>
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,10 +18,10 @@
   </div>
 
   <div class="topnav">
-    <a href="#">Link</a>
-    <a href="#">Link</a>
-    <a href="#">Link</a>
-    <a href="Sair.php">Sair</a>
+    <a href="#">AGHU</a>
+    <a href="#">CADSUS</a>
+    <a href="#">SISREG</a>
+    <a href="Sair.php">SAIR</a>
   </div>
 
   <div class="row">

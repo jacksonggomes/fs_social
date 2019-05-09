@@ -45,7 +45,7 @@ include_once 'includes/functions.php';
         <legend>Dados da Internação</legend>
         <div class="row">
           <div class="col-25"><label for="datainternacao">Data de Internação</label></div>
-          <div class="col-75"><input type="date" id="datainternacao" name="ndatainternacao"></div>
+          <div class="col-75"><input type="date" id="datainternacao" name="ndatainternacao" required></div>
         </div>
 
         <div class="row">

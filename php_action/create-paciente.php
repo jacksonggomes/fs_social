@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+  if(!isset($_SESSION['usu_id']))
+  {
+    header("location: index.php");
+    exit;
+  }
+
 require_once 'init.php';
 
 if(isset($_POST['btn-cadastrar-paciente'])):
@@ -39,8 +46,13 @@ if(isset($_POST['btn-cadastrar-paciente'])):
 	$agua = ($_POST['nagua']);
 	$luz = ($_POST['nluz']);
 	$ocupacao = ($_POST['nocupacao']);
-	$profissao = ($_POST['nprofissao']);
-	$localtrabalho = ($_POST['nlocaltrabalho']);
+	if ($ocupacao == "Do lar" || $ocupacao == "Estudante" || $ocupacao == "Desempregado"){
+		$profissao = "";
+		$localtrabalho = "";
+	}else{
+		$profissao = ($_POST['nprofissao']);
+		$localtrabalho = ($_POST['nlocaltrabalho']);
+	}
 	$relacaotrabalhista = ($_POST['nrelacaotrabalhista']);
 	$vinculoprevidenciario = ($_POST['nvinculoprevidenciario']);
 	$orgaovinculacao = ($_POST['norgaovinculacao']);

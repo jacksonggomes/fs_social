@@ -17,6 +17,16 @@ function verifica(value){
   }
 };
 </script>
+<script>
+function verificaMov(value){
+	var input = document.getElementById("movimentacao");
+  if(value == "Internado"){
+    input.disabled = true;
+  }else{
+    input.disabled = false;
+  }
+};
+</script>
 
 <script>
 	//Verifica se CPF é válido
