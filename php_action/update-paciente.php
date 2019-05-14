@@ -1,9 +1,16 @@
 <?php
 
+session_start();
+  if(!isset($_SESSION['usu_id']))
+  {
+    header("location: index.php");
+    exit;
+  }
+
 require_once 'init.php';
 if(isset($_POST['btn-editar-paciente'])):
 	$id = ($_POST['nid']);
-	$fia = ($_POST['nfia']);
+	$prontuario = ($_POST['nprontuario']);
 	$cadsus = ($_POST['ncadsus']);
 	$documento = ($_POST['ndocumento']);
 	$cpf = ($_POST['ncpf']);
@@ -39,11 +46,17 @@ if(isset($_POST['btn-editar-paciente'])):
 	$agua = ($_POST['nagua']);
 	$luz = ($_POST['nluz']);
 	$ocupacao = ($_POST['nocupacao']);
-	$profissao = ($_POST['nprofissao']);
-	$localtrabalho = ($_POST['nlocaltrabalho']);
+	if ($ocupacao == "Do lar" || $ocupacao == "Estudante" || $ocupacao == "Desempregado"){
+		$profissao = "";
+		$localtrabalho = "";
+	}else{
+		$profissao = ($_POST['nprofissao']);
+		$localtrabalho = ($_POST['nlocaltrabalho']);
+	}
 	$relacaotrabalhista = ($_POST['nrelacaotrabalhista']);
 	$vinculoprevidenciario = ($_POST['nvinculoprevidenciario']);
-	$orgaovinculacao = ($_POST['norgaovinculacao']);
+	$pac_orgao_vincnculacao = ($_POST['norgaovinculacao']);
+	$usuario = ($_SESSION['usu_id']);
 
 
 
@@ -51,10 +64,10 @@ if(isset($_POST['btn-editar-paciente'])):
 	$PDO = db_connect();
 //$sql = "INSERT INTO users(name, email, password) VALUES(:name, :email, :passwordHash)";
 	
-	$sql = "UPDATE paciente SET pac_fia = :fia, pac_cadsus = :cadsus, pac_documento = :documento, pac_cpf = :cpf, pac_nome = :nome, pac_endereco = :endereco, pac_bairro_id = :bairro, pac_cidade_id = :cidade, pac_estado = :estado, pac_telefone = :telefone, pac_recado = :recado, pac_celular = :celular, pac_nome_pai = :pai, pac_prof_pai = :ppai, pac_nome_mae = :mae, pac_prof_mae = :pmae, pac_conjugue = :conjugue, pac_prof_conjugue = :pconjugue, pac_responsavel = :responsavel, pac_responsavel_vinc = :vinculo, pac_naturalidade = :naturalidade, pac_nascimento = :datanascimento, pac_idade = :idade, pac_sexo = :sexo, pac_agregacao = :agregacao, pac_escolaridade = :escolaridade, pac_pessoas_res = :pessoas, pac_pessoas_rend = :pessoasrend, pac_renda = :renda, pac_tipo_casa = :casa, pac_const_casa = :construcaocasa, pac_comodos = :comodos, pac_esgoto = :esgoto, pac_agua = :agua, pac_luz = :luz, pac_ocupa = :ocupacao, pac_profissao = :profissao, pac_local_trabalho = :localtrabalho, pac_relacao_trabalhista = :relacaotrabalhista, pac_vinculo_prev = :vinculoprevidenciario, pac_orgao_vinc = :orgaovinculacao  WHERE pac_id = :id";
+	$sql = "UPDATE paciente SET pac_prontuario = :prontuario, pac_cadsus = :cadsus, pac_documento = :documento, pac_cpf = :cpf, pac_nome = :nome, pac_endereco = :endereco, pac_bairro_id = :bairro, pac_cidade_id = :cidade, pac_estado = :estado, pac_telefone = :telefone, pac_recado = :recado, pac_celular = :celular, pac_nome_pai = :pai, pac_prof_pai = :ppai, pac_nome_mae = :mae, pac_prof_mae = :pmae, pac_conjugue = :conjugue, pac_prof_conjugue = :pconjugue, pac_responsavel = :responsavel, pac_responsavel_vinc = :vinculo, pac_naturalidade = :naturalidade, pac_nascimento = :datanascimento, pac_idade = :idade, pac_sexo = :sexo, pac_agregacao = :agregacao, pac_escolaridade = :escolaridade, pac_pessoas_res = :pessoas, pac_pessoas_rend = :pessoasrend, pac_renda = :renda, pac_tipo_casa = :casa, pac_const_casa = :construcaocasa, pac_comodos = :comodos, pac_esgoto = :esgoto, pac_agua = :agua, pac_luz = :luz, pac_ocupa = :ocupacao, pac_profissao = :profissao, pac_local_trabalho = :localtrabalho, pac_relacao_trabalhista = :relacaotrabalhista, pac_vinculo_prev = :vinculoprevidenciario, pac_orgao_vinc = :orgaovinculacao, pac_usu_id = :usuario WHERE pac_id = :id";
 
 	$stmt = $PDO->prepare($sql);
-	$stmt->bindParam(':fia', $fia);
+	$stmt->bindParam(':prontuario', $prontuario);
 	$stmt->bindParam(':cadsus', $cadsus);
 	$stmt->bindParam(':documento', $documento);
 	$stmt->bindParam(':cpf', $cpf);
@@ -95,12 +108,14 @@ if(isset($_POST['btn-editar-paciente'])):
 	$stmt->bindParam(':relacaotrabalhista', $relacaotrabalhista);
 	$stmt->bindParam(':vinculoprevidenciario', $vinculoprevidenciario);
 	$stmt->bindParam(':orgaovinculacao', $orgaovinculacao);
+	$stmt->bindParam(':usuario', $usuario);
 	$stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
 
 	if ($stmt->execute())
 	{
-		header('Location: ../pesquisar-paciente.php');
+		$_SESSION['usu_msg'] = "Paciente alterado com sucesso!";
+		header('Location: ../message1.php');
 	}
 	else
 	{

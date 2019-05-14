@@ -64,12 +64,29 @@ body {
   text-align: center;
   text-decoration: none;
   display: block;
+  border:1px solid white;
 }
 
 
 .column.side a:hover, .column.side a:active {
   background-color: red;
 }
+
+.menu li{
+position:relative;
+}
+
+.menu li  ul{
+position: relative;
+left:0;
+display:none;
+}  
+.menu li:hover ul, .menu li.over ul{display:block;}
+.menu li ul li{
+border:1px solid white; 
+display:block; 
+}
+
 
 /* Middle column */
 .column.middle {
@@ -110,7 +127,7 @@ fieldset#sexo{
 }
 
 fieldset{
-  width: 100%;
+  width: 95%;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -167,6 +184,12 @@ label{
   padding: 20px;
 }
 
+.container1 {
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 50px;
+  text-align: center;
+}
 .col-25 {
   float: left;
   width: 25%;
@@ -179,6 +202,9 @@ label{
   margin-top: 6px;
 }
 
+.row#enviar{
+  width: 95%;
+}
 /* Clear floats after the columns */
 .row:after {
   content: "";
@@ -206,6 +232,14 @@ label{
   .column.side, .column.middle {
     width: 100%;
   }
+}
+
+div.msg-sucesso{
+  width: 400px;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: rgba(50,205,50,3);
+  border: 1px solid rgb(34,139,34);
 }
 
 div.msg-erro{

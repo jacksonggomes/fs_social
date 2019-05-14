@@ -15,8 +15,8 @@ include_once 'includes/header.php';
       <fieldset id="paciente">
         <legend>Pesquisar Inrternações</legend>
         <div class="row">
-          <div class="col-25"><label for="fia">CADSUS</label></div>
-          <div class="col-75"><input type="text" id="cadsus" name="ncadsus" placeholder="Informe o cartão do SUS.."></div>
+          <div class="col-25"><label for="fia">Prontuário</label></div>
+          <div class="col-75"><input type="text" id="prontuario" name="nprontuario" placeholder="Informe o cartão do SUS.."></div>
         </div>
         <div class="row">
           <div class="col-25"><label for="fia">Nome</label></div>

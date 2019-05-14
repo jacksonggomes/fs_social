@@ -21,14 +21,14 @@ $u = new Usuario;
 <div id="corpo-form-cad">
 <h1>Cadastrar Usuário</h1>
 <form method="POST">
-	<input type="text" name="nome" placeholder="Nome completo">
-	<input type="text" name="cargo" placeholder="Cargo">
+	<input type="text" name="nome" placeholder="Nome completo" required>
+	<input type="text" name="cargo" placeholder="Cargo" required>
 	<select id="perfil" name="perfil" hidden>
             <option selected value="Usuário">Usuário</option>
     </select>
-	<input type="email" name="email" placeholder="Usuário">
-	<input type="password" name="senha" placeholder="Senha">
-	<input type="password" name="confSenha" placeholder="Confirmar senha">
+	<input type="text" name="login" placeholder="Usuário" required>
+	<input type="password" name="senha" placeholder="Senha" required>
+	<input type="password" name="confSenha" placeholder="Confirmar senha" required>
 	<input type="submit" value="Cadastrar" name="cadastrar">
 </form>
 <form action="index.php">
@@ -43,17 +43,17 @@ if(isset($_POST['nome'])){
 	$nome = addslashes($_POST['nome']);
 	$cargo = addslashes($_POST['cargo']);
 	$perfil = addslashes($_POST['perfil']);
-	$email = addslashes($_POST['email']);
+	$login = addslashes($_POST['login']);
 	$senha = addslashes($_POST['senha']);
 	$confirmarSenha = addslashes($_POST['confSenha']);
 	//verificar se esta preenchido
-	if(!empty($nome) && !empty($cargo) && !empty($perfil) && !empty($email) && !empty($senha) && !empty($confirmarSenha))
+	if(!empty($nome) && !empty($cargo) && !empty($perfil) && !empty($login) && !empty($senha) && !empty($confirmarSenha))
 	{
 		$u->conectar("fsocial","localhost","root","");
 		if($u->msgErro == "")//tudo ok
 		{
 			if($senha == $confirmarSenha){
-				if($u->cadastrar($nome,$cargo,$perfil,$email,$senha)){
+				if($u->cadastrar($nome,$cargo,$perfil,$login,$senha)){
 
 					?>
 					<div id="msg-sucesso">

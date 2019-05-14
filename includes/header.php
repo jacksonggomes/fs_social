@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
   <title>Página inicial</title>
+  <link rel="icon" type="shortcut icon" href="images/sap.ico" />
   <link rel="stylesheet" href="css/estilo.css"/>
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,19 +18,26 @@
   </div>
 
   <div class="topnav">
-    <a href="#">Link</a>
-    <a href="#">Link</a>
-    <a href="#">Link</a>
-    <a href="Sair.php">Sair</a>
+    <a href="#">AGHU</a>
+    <a href="#">CADSUS</a>
+    <a href="#">SISREG</a>
+    <a href="Sair.php">SAIR</a>
   </div>
 
   <div class="row">
     <div class="column side">
-      <ul>
+      <ul class="menu">
         <h2>Menu</h2>
         <li><a href="home.php">Home</a></li>
         <li><a href="pesquisar-paciente.php">Pacientes</a></li>
         <li><a href="pesquisar-internacao.php">Internações</a></li>
-        <li><a href="default.asp" target="_blank">Relatórios</a></li>
+        <li><a href="#">Relatórios de Internações</a>
+            <ul>
+              <li><a href="relatorio-sexo.php">Sexo</a></li>
+              <li><a href="relatorio-origem.php">Origem</a></li>
+              <li><a href="relatorio-idade">Idade</a></li> 
+              <li><a href="relatorio-renda">Renda</a></li>                  
+            </ul>
+        </li>
       </ul>
     </div>

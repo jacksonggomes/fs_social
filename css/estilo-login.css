@@ -12,11 +12,11 @@ input{
 	display: block;
 	height: 40px;
 	width: 400px;
-	margin: 10px;
-	border-radius: 30px;
+	margin: 5px;
+	border-radius: 4px;
 	border: 1px white;
-	font-size: 16pt;
-	padding: 5px 20px;
+	font-size: 12pt;
+	padding: 2px 10px;
 	background-color: #33CCCC;
 	color: black;
 	outline: none;
@@ -24,19 +24,19 @@ input{
 select{
 	display: block;
 	height: 40px;
-	width: 440px;
-	margin: 10px;
-	border-radius: 30px;s
+	width: 420px;
+	margin: 5px;
+	border-radius: 4px;s
 	border: 1px solid white;
 	font-size: 12pt;
-	padding: 5px 10px;
+	padding: 2px 10px;
 	background-color: rgba(255,255,255,0.1);
 	color: black;
 	outline: none;
 }
 div#logo{
 	/*background-color: red;*/
-	width: 420px;
+	width: 460px;
 	margin: 50px auto 0px auto;
 }
 div#logo-cad{
@@ -78,8 +78,8 @@ input[type=submit] {
   border: none;
   cursor: pointer;
   height: 50px;
-  width: 440px;
-  padding: 5px 10px;
+  width: 420px;
+  padding: 2px 10px;
 }
 
 input[type=submit]:hover {
@@ -92,8 +92,8 @@ input[type=submit]#voltar{
   border: none;
   cursor: pointer;
   height: 50px;
-  width: 440px;
-  padding: 5px 10px;
+  width: 420px;
+  padding: 2px 10px;
 }
 
 input[type=submit]#voltar:hover {
