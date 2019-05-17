@@ -32,6 +32,7 @@ $graph->SetShadow();
  
 // Adjust the margin
 $graph->img->SetMargin(40,40,20,70);
+$graph->xaxis->SetTickLabels($gDateLocale->GetShortMonth());
  
 // Create the two linear plot
 $lineplot=new LinePlot($yano);
@@ -48,7 +49,7 @@ $graph->y2axis->SetColor("green");
 $graph->yaxis->SetColor("red");
  
 $graph->title->Set("Demandas");
-$graph->xaxis->title->Set("Meses");
+$graph->xaxis->title->Set($ano);
 //$graph->yaxis->title->Set("Quantidade");
  
 $graph->title->SetFont(FF_FONT1,FS_BOLD);

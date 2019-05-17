@@ -18,7 +18,7 @@
   </div>
 
   <div class="topnav">
-    <a href="#">AGHU</a>
+    <a href="https://10.54.200.10/aghu/pages/casca/casca.xhtml" target="blank">AGHU</a>
     <a href="#">CADSUS</a>
     <a href="#">SISREG</a>
     <a href="Sair.php">SAIR</a>

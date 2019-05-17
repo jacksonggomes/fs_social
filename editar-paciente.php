@@ -37,12 +37,12 @@ endif;
 
           <div class="row">
             <div class="col-25"><label for="documento">Documento</label></div>
-            <div class="col-75"><input type="text" id="documento" name="ndocumento" value="<?php echo $dados['pac_documento'];?>" pattern="[0-9]+$"></div>
+            <div class="col-75"><input type="text" id="documento" name="ndocumento" value="<?php echo $dados['pac_documento'];?>"></div>
           </div>
 
           <div class="row">
             <div class="col-25"><label for="cpf">CPF</label></div>
-            <div class="col-75"><input type="text" id="cpf" name="ncpf" value="<?php echo $dados['pac_cpf'];?>" readonly></div>
+            <div class="col-75"><input type="text" id="cpf" name="ncpf" value="<?php echo $dados['pac_cpf'];?>" title="Somente números"></div>
           </div>
 
           <div class="row">

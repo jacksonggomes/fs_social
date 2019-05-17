@@ -22,7 +22,7 @@ include_once 'includes/scripts.php';
         </div>
         <div class="row">
           <div class="col-25"><label for="cpf">CADSUS</label></div>
-          <div class="col-75"><input type="text" id="cadsus" name="ncadsus" placeholder="Informe o cartão CADSUS.."></div>
+          <div class="col-75"><input type="text" id="cadsus" name="ncadsus" pattern="[0-9]{11}" placeholder="Informe o cartão CADSUS.."></div>
         </div>
 
         <div class="row">
@@ -32,7 +32,7 @@ include_once 'includes/scripts.php';
 
         <div class="row">
           <div class="col-25"><label for="cpf">CPF</label></div>
-          <div class="col-75"><input id="cpf" name="ncpf" pattern="[0-9]{11}" maxlength="11" placeholder="CPF" onblur="TestaCPF(this.value)"></div>
+          <div class="col-75"><input id="cpf" name="ncpf" pattern="[0-9]{11}" maxlength="11" placeholder="Somente números" onblur="TestaCPF(this.value)"></div>
         </div>
 
         <div class="row">
