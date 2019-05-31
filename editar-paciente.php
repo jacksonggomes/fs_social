@@ -223,8 +223,8 @@ endif;
           <option value="<?php echo $dados['pac_agregacao'];?>" selected><?php echo $dados['pac_agregacao'];?></option>
           <option value="Reside Sozinho">1) Reside Sozinho</option>
           <option value="Reside com pais e/ou irmãos">2) Reside com pais e/ou irmãos</option>
-          <option value="Rezide com amigos">3) Rezide com amigos</option>
-          <option value="Rezide com esposo(a) e/ou filhos">4) Rezide com esposo(a) e/ou filhos</option>
+          <option value="Reside com amigos">3) Reside com amigos</option>
+          <option value="Reside com esposo(a) e/ou filhos">4) Reside com esposo(a) e/ou filhos</option>
           <option value="Sem residência fixa">5) Sem residência fixa</option>
           <option value="Sem residência">6) Sem residência</option>
           <option value="Instituição">7) Instituição</option>

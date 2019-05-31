@@ -13,7 +13,7 @@ include_once 'includes/header.php';
   <div class="container">
     <form action="pesquisar-internacao-result.php" method="GET">
       <fieldset id="paciente">
-        <legend>Pesquisar Inrternações</legend>
+        <legend>Pesquisar Internações</legend>
         <div class="row">
           <div class="col-25"><label for="fia">Prontuário</label></div>
           <div class="col-75"><input type="text" id="prontuario" name="nprontuario" placeholder="Informe o cartão do SUS.."></div>
