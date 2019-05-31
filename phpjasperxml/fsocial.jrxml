@@ -7,7 +7,7 @@
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
 	<queryString language="SQL">
-		<![CDATA[SELECT internacao.*, paciente.*, bairro.desc_bairro, cidade.cid_desc FROM internacao INNER JOIN paciente ON internacao.interna_pac_id = paciente.pac_id INNER JOIN bairro ON paciente.pac_bairro_id = bairro.id_bairro INNER JOIN cidade ON paciente.pac_cidade_id = cidade.id_cidade WHERE internacao.interna_id = '$P{parameter1}']]>
+		<![CDATA[SELECT internacao.*, paciente.*, cidade.cid_desc FROM internacao INNER JOIN paciente ON internacao.interna_pac_id = paciente.pac_id INNER JOIN cidade ON paciente.pac_cidade_id = cidade.id_cidade WHERE internacao.interna_id = '$P{parameter1}']]>
 	</queryString>
 	<field name="interna_id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="interna_id"/>
@@ -205,17 +205,17 @@
 		<property name="com.jaspersoft.studio.field.label" value="pac_orgao_vinc"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
 	</field>
-	<field name="pac_bairro_id" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.label" value="pac_bairro_id"/>
+	<field name="pac_bairro" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="pac_bairro"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
 	</field>
 	<field name="pac_cidade_id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="pac_cidade_id"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
 	</field>
-	<field name="desc_bairro" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="desc_bairro"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="bairro"/>
+	<field name="pac_bairro" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="pac_bairro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
 	</field>
 	<field name="cid_desc" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="cid_desc"/>
@@ -357,7 +357,7 @@
 				<reportElement x="101" y="110" width="449" height="25" uuid="74ebfcc5-434f-409d-b1d6-6be7b2735b79">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{desc_bairro}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{pac_bairro}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="-1" y="110" width="102" height="25" uuid="52d20781-a755-4001-807d-f334cec519b2">

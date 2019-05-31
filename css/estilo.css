@@ -77,8 +77,8 @@ position:relative;
 }
 
 .menu li  ul{
-position: relative;
-left:0;
+position: absolute;
+left:200px;
 display:none;
 }  
 .menu li:hover ul, .menu li.over ul{display:block;}

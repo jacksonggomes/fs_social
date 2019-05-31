@@ -23,11 +23,29 @@
     <a href="#">SISREG</a>
     <a href="Sair.php">SAIR</a>
   </div>
-
+  <?php
+  if ($_SESSION['usu_perfil'] == 'Administrador'): ?>
   <div class="row">
     <div class="column side">
       <ul class="menu">
-        <h2>Menu</h2>
+        <li><a href="home.php">Dashboard</a></li>
+        <li><a href="pesquisar-usuario.php">Gerenciar usuários</a></li>
+        <li><a href="pesquisar-paciente.php">Pacientes</a></li>
+        <li><a href="pesquisar-internacao.php">Internações</a></li>
+        <li><a href="#">Relatórios de Internações</a>
+            <ul>
+              <li><a href="relatorio-sexo.php">Sexo</a></li>
+              <li><a href="relatorio-origem.php">Origem</a></li>
+              <li><a href="relatorio-idade">Idade</a></li> 
+              <li><a href="relatorio-renda">Renda</a></li>                  
+            </ul>
+        </li>
+      </ul>
+    </div>
+  <?php else: ?>
+  <div class="row">
+    <div class="column side">
+      <ul class="menu">
         <li><a href="home.php">Home</a></li>
         <li><a href="pesquisar-paciente.php">Pacientes</a></li>
         <li><a href="pesquisar-internacao.php">Internações</a></li>
@@ -41,3 +59,4 @@
         </li>
       </ul>
     </div>
+  <?php endif;?>

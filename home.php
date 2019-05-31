@@ -11,7 +11,6 @@ include_once 'includes/header.php';
 <br>
 <div class="column middle">  
 	<img id="grafico" src="exemplo.php">
- 	<img id="grafico" src="exemplo1.php">
 </div>
 </div>
 <?php

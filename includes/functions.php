@@ -67,7 +67,7 @@ function pesquisarCidadePaciente($pac_cidade_id){
 
 function pesquisarInternacao($prontuario, $nome){
 	$pdo = db_connect();
-	if ($prontuario != "" AND $nome == ""){
+if ($prontuario != "" AND $nome == ""){
 	$resultado_internacao =  $pdo->prepare("SELECT internacao.*, paciente.pac_nome FROM internacao INNER JOIN paciente ON internacao.interna_pac_id = paciente.pac_id WHERE internacao.interna_pac_id = (SELECT pac_id FROM paciente WHERE pac_prontuario = '$prontuario')");	
 	$resultado_internacao->execute();
 	return $resultado_internacao;
@@ -177,3 +177,24 @@ function pesquisaInternacoes(){
 	return $internacoes;
 }
 
+function pesquisarUsuario($usu_nome){
+	$pdo = db_connect(); 
+	if($usu_nome != ""):
+		$resultado_usuario =  $pdo->prepare("SELECT * FROM usuario WHERE usu_nome like '%$usu_nome%' ORDER BY  usu_nome");
+		$resultado_usuario->execute();
+		return $resultado_usuario;
+	else:
+		$resultado_usuario =  $pdo->prepare("SELECT * FROM usuario WHERE usu_nome like '%$usu_nome%' ORDER BY  usu_nome");
+		$resultado_usuario->execute();
+		return $resultado_usuario;
+	endif;
+	$pdo = null;
+}
+
+function pesquisarUsuarioId($usu_id){
+	$pdo = db_connect(); 
+	$resultado_usuario =  $pdo->prepare("SELECT * FROM usuario WHERE usu_id = '$usu_id'");
+	$resultado_usuario->execute();
+	return $resultado_usuario;
+	$pdo = null;
+}

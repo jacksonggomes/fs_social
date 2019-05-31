@@ -56,24 +56,8 @@ endif;
           </div>
 
           <div class="row">
-            <div class="col-25"><label for="bairro">Bairro</label></div>
-            <div class="col-75">
-              <select id="bairro" name="nbairro">
-                <?php $dados1 = pesquisarBairroPaciente($dados['pac_bairro_id']);
-                if (count($dados1)):
-                  foreach ($dados1 as $bairro): ?>
-                    <option value="<?php echo $bairro['id_bairro'] ?>" selected><?php echo $bairro['desc_bairro']; ?></option>
-                  <?php endforeach; 
-                endif;?>
-                <?php $resultado_bairro = listarBairro();
-                if(count($resultado_bairro)):
-                  foreach ($resultado_bairro as $bairro):?>
-                    <option value="<?php echo $bairro['id_bairro'] ?>"><?php echo $bairro['desc_bairro'] ?></option>
-                    <?php 
-                  endforeach;
-                endif; ?>
-              </select>
-            </div>
+            <div class="row"><div class="col-25"><label for="bairro">Bairro</label></div>
+            <div class="col-75"><input type="text" id="bairro" name="nbairro" value="<?php echo $dados['pac_bairro'];?>"></div>
           </div>
 
       <div class="row">
@@ -88,7 +72,7 @@ endif;
 
         <div class="row">
           <div class="col-25"><label for="celular">Celular</label></div>
-          <div class="col-75"><input type="text" data-mask="(00) 00000-0000" class="form-control" placeholder="Celular" id="celular" name="ncelular" value="<?php echo $dados['pac_celular'];?>"></div>
+          <div class="col-75"><input type="text" placeholder="Celular" id="celular" name="ncelular" value="<?php echo $dados['pac_celular'];?>"></div>
         </div>
 
       <div class="row">
@@ -384,7 +368,8 @@ endif;
           <option value="Do lar">1) Do lar</option>
           <option value="Estudante">2) Estudante</option>
           <option value="Desempregado">3) Desempregado</option>
-          <option value="Outros">4) Outros</option>
+          <option value="Aposentado">4) Aposentado</option>
+          <option value="Outros">5) Outros</option>
         </select>
       </div>
     </div>

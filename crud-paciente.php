@@ -46,23 +46,12 @@ include_once 'includes/scripts.php';
         </div>
 
         <div class="row">
-          <div class="col-25"><label for="bairro">Bairro</label></div>
-          <div class="col-75">
-            <select id="bairro" name="nbairro">
-              <option value="" selected>--Selecione um bairro--</option>
-              <?php $resultado_bairro = listarBairro();
-              if(count($resultado_bairro)):
-                foreach ($resultado_bairro as $bairro):?>
-                  <option value="<?php echo $bairro['id_bairro'] ?>"><?php echo $bairro['desc_bairro'] ?></option>
-                  <?php 
-                endforeach;
-              endif; ?>
-            </select>
-          </div>
+          <div class="row"><div class="col-25"><label for="bairro">Bairro</label></div>
+          <div class="col-75"><input type="text" id="bairro" name="nbairro" placeholder="Informe o bairro.." required></div>
         </div>
 
         <div class="row">
-          <div class="col-25"><label for="telefone">Telefone</label></div>
+          <div class="col-25"><label for="telefone">Telefone Fixo</label></div>
           <div class="col-75"><input type="text" data-mask="(00) 0000-0000" class="form-control" placeholder="Telefone" id="telefone" name="ntelefone"></div>
         </div>
 
@@ -73,7 +62,7 @@ include_once 'includes/scripts.php';
 
         <div class="row">
           <div class="col-25"><label for="celular">Celular</label></div>
-          <div class="col-75"><input type="text" data-mask="(00) 00000-0000" class="form-control" placeholder="Celular" id="celular" name="ncelular"></div>
+          <div class="col-75"><input type="text" placeholder="Celular" id="celular" name="ncelular"></div>
         </div>
 
         <div class="row">
@@ -364,7 +353,8 @@ include_once 'includes/scripts.php';
             <option value="Do lar">1) Do lar</option>
             <option value="Estudante">2) Estudante</option>
             <option value="Desempregado">3) Desempregado</option>
-            <option value="Outros">4) Outros</option>
+            <option value="Aposentado">4) Aposentado</option>
+            <option value="Outros">5) Outros</option>
           </select>
         </div>
       </div>
